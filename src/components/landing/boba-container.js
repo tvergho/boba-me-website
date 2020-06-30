@@ -1,13 +1,12 @@
 import React from 'react';
-import windowSize from 'react-window-size';
 import Cup from './cup';
 
-const BobaContainer = ({ windowWidth }) => {
+const BobaContainer = () => {
   return (
     <div className="container-half">
-      <Cup height={windowWidth > 960 ? 750 : 600} shrink={windowWidth <= 960} />
+      <Cup />
     </div>
   );
 };
 
-export default windowSize(BobaContainer);
+export default BobaContainer;

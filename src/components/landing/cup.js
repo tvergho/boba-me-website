@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
 import React from 'react';
 
-const Cup = ({ height, shrink }) => {
+const Cup = () => {
   return (
-    <svg width={`${0.8 * height}px`} height={`${height}px`} viewBox="0 0 496 607" version="1.1" xmlns="http://www.w3.org/2000/svg" style={{ paddingTop: '50px', marginLeft: '50px', marginBottom: shrink ? '30px' : '' }}>
+    <svg viewBox="0 0 496 607" version="1.1" xmlns="http://www.w3.org/2000/svg" className="cup">
       <title>Group 3</title>
       <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="Desktop-HD" transform="translate(-1170.000000, -289.000000)">
