@@ -3,7 +3,7 @@ import React from 'react';
 
 const LogoSVG = () => {
   return (
-    <svg width="446px" height="85px" viewBox="0 0 446 85" version="1.1" xmlns="http://www.w3.org/2000/svg" className="logo">
+    <svg viewBox="0 0 446 85" version="1.1" xmlns="http://www.w3.org/2000/svg" className="logo">
       <title>bobame</title>
       <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="Desktop-HD" transform="translate(-914.000000, -91.000000)">

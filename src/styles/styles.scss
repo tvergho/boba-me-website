@@ -12,6 +12,10 @@ input:focus, button:focus {
     outline: 0;
 }
 
+.landing {
+    width: 100%;
+}
+
 .logo-header {
     display: flex;
     justify-content: center;
@@ -23,6 +27,8 @@ input:focus, button:focus {
 
     .logo {
         margin-left: 20px;
+        width: 446px;
+        height: 85px;
     }
 }
 
@@ -168,10 +174,37 @@ input:focus, button:focus {
     .landing-container {
         flex-direction: column-reverse !important;
     }
+    .container-half {
+        flex: 1 1 100% !important;
+    }
     .cup {
         margin-bottom: 30px !important;
         height: 600px !important;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .landing-container {
+        flex-direction: column-reverse !important;
+    }
+    .cup {
+        margin-bottom: 30px !important;
+        height: 400px !important;
+    }
+    .title-text {
+        font-size: 50px !important;
+    }
+    .subtext {
+        font-size: 40px !important;
+    }
+    .logo {
+        width: 250px !important;
+    }
+    .logo-image {
+        width: 70px !important;
+        height: 70px !important;
+    }
+}
+
 
   
