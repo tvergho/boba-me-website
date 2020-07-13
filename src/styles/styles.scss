@@ -5,7 +5,8 @@ $base-color: #FFB7B2;
 }
 
 body {
-    background-color: $base-color;
+    margin: 0;
+    font-family: 'Helvetica Neue', sans-serif;
 }
 
 input:focus, button:focus {
@@ -20,14 +21,17 @@ input:focus, button:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
-    opacity: 0;
-    animation: fade-in 0.75s ease-in 0.25s;
-    animation-fill-mode: forwards;
+    padding-top: 50px;
+    background-color: $base-color;
 
     .logo {
         margin-left: 20px;
         width: 360px;
+    }
+    svg {
+        opacity: 0;
+        animation: fade-in 0.75s ease-in;
+        animation-fill-mode: forwards;
     }
 }
 
@@ -35,6 +39,7 @@ input:focus, button:focus {
     display: flex;
     flex-direction: row;
     padding-bottom: 100px;
+    background-color: $base-color;
 
     .container-half {
         display: flex;
@@ -42,7 +47,6 @@ input:focus, button:focus {
         flex: 1 1 50%;
         justify-content: center;
         align-items: center;
-        font-family: 'Helvetica Neue', sans-serif;
         color: white;
         text-align: center;
         animation: fade-in 0.75s ease-in 0.75s;
@@ -89,7 +93,6 @@ input:focus, button:focus {
         input {
             margin-bottom: 15px;
             padding: 10px 20px;
-            font-family: 'Helvetica Neue', sans-serif;
             color: $base-color;
             font-weight: 300;
             font-size: 20px;
@@ -126,6 +129,50 @@ input:focus, button:focus {
     }
 }
 
+#business-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 30px;
+
+    .sign-in-button {
+        font-weight: 700;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 8px 30px;
+        border-radius: 8px;
+        border: none;
+    }
+    .sign-in-button.white {
+        background-color: $base-color;
+        color: white;
+        transition: background-color 0.3s;
+    }
+    .sign-in-button.white:hover {
+        background-color: rgba(255,183,178,0.8);
+        transition: background-color 0.3s;
+    }
+    .sign-in-button.white:active {
+        background-color: rgba(255,183,178,0.5);
+        transition: background-color 0.2s;
+    }
+    .sign-in-button.pink {
+        background-color: white;
+        color: $base-color;
+        transition: background-color 0.3s;
+    }
+    .sign-in-button.pink:hover {
+        background-color: rgba(255,255,255,0.8);
+        transition: background-color 0.3s;
+    }
+    .sign-in-button.pink:active {
+        background-color: rgba(255,255,255,0.5);
+        transition: background-color 0.2s;
+    }
+}
+
 #business {
     display: flex;
     flex-direction: column;
@@ -142,8 +189,8 @@ input:focus, button:focus {
         width: 100%;
         min-width: 100%;
     }
-    #intro-page, #sign-up-page {
-        background-color: white;
+    #learn-more-page {
+        background-color: $base-color;
     }
 }
 
@@ -151,22 +198,33 @@ input:focus, button:focus {
 	animation: rotate-out-2-cw 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s both;
 }
 
+.white {
+    color: $base-color;
+    background-color: white;
+    border-bottom: 1px solid $base-color;
+}
+.pink {
+    color: white;
+    background-color: $base-color;
+    border-bottom: 1px solid white;
+}
+
 /**
  * keyframes
  */
 
-  @keyframes rotate-out-2-cw {
-    0% {
-      -webkit-transform: rotate(0);
-              transform: rotate(0);
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: rotate(45deg);
-              transform: rotate(45deg);
-      opacity: 0;
-    }
-  }
+@keyframes rotate-out-2-cw {
+0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+    opacity: 1;
+}
+100% {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+    opacity: 0;
+}
+}
 
 @keyframes fade-in {
     0% { 
@@ -176,7 +234,6 @@ input:focus, button:focus {
         opacity: 1; 
     }
 }
-
 /**
  * media rules
  */
