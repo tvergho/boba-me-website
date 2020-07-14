@@ -31,7 +31,6 @@ class Business extends Component {
   }
 
   componentDidMount() {
-    this.bind();
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
   }
@@ -54,7 +53,7 @@ class Business extends Component {
   unbind = () => {
     console.log('unbind');
     if (this.snapElement) {
-      this.snapElement.unbind();
+      this.snapElement.unbind(this.onSnap);
       this.snapElement = null;
     }
   }

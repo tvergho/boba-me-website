@@ -266,14 +266,17 @@ $base-color: #FFB7B2;
 }
 
 @media screen and (max-width: 768px) {
+    .title, .subtitle {
+        font-size: 24px !important;
+    }
     .title-text {
-        font-size: 28px !important;
+        font-size: 26px !important;
         max-width: 80% !important;
         padding-bottom: 20px !important;
     }
     .learn-more-page {
-        height: 400% !important;
-        min-height: 400% !important;
+        height: 350% !important;
+        min-height: 350% !important;
     }
     .business-container .cup {
         max-height: 400px !important;
@@ -298,6 +301,7 @@ $base-color: #FFB7B2;
         display: none !important;
     }
     .sign-up-form-business {
+        margin-top: 75px !important;
         margin-bottom: 40px !important;
 
         button {
