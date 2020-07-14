@@ -73,7 +73,7 @@ class Home extends Component {
         <SEO title="Home" />
         <LogoHeader logo={data.logo.childImageSharp.fixed} />
 
-        <div className="landing-container">
+        <div id="landing-container" className="container">
           <SignUpContainer errors={this.state.errors} signUp={this.signUp} input={this.state.input} onChange={this.onChange} submitted={this.state.submitted} />
           <BobaContainer />
         </div>

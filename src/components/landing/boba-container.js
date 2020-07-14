@@ -1,5 +1,5 @@
 import React from 'react';
-import Cup from './cup';
+import Cup from '../cup';
 
 const BobaContainer = () => {
   return (

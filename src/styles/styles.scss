@@ -35,31 +35,48 @@ input:focus, button:focus {
     }
 }
 
-.landing-container {
+.container {
     display: flex;
     flex-direction: row;
+}
+.container-half {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 50%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.container-tri {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 33%;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    margin-top: 120px;
+}
+.title-text {
+    font-size: 50px;
+    font-weight: 300;
+    line-height: 1.1;
+}
+
+#landing-container.container {
     padding-bottom: 100px;
+}
+#landing-container {
     background-color: $base-color;
 
     .container-half {
-        display: flex;
-        flex-direction: column;
-        flex: 1 1 50%;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-align: center;
         animation: fade-in 0.75s ease-in 0.75s;
         animation-fill-mode: forwards;
         opacity: 0;
+        color: white;
 
         .title-text {
-            font-size: 50px;
-            font-weight: 300;
-            line-height: 1.1;
             max-width: 60%;
         }
-
         .subtext {
             font-size: 30px;
             font-weight: 500;
@@ -120,12 +137,74 @@ input:focus, button:focus {
             transform: scale(1.1);
         }
     }
+}
 
-    .cup {
-        height: 700px;
-        width: 560px;
-        padding-top: 50px;
-        margin-left: 50px;
+.cup {
+    height: 700px;
+    width: 560px;
+    padding-top: 50px;
+    margin-left: 50px;
+}
+
+#business {
+    .sign-in {
+        font-weight: 700;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 8px 30px;
+        border-radius: 8px;
+        border: none;
+    }
+    .sign-in-main {
+        font-weight: 700;
+        font-size: 36px;
+        cursor: pointer;
+        padding: 16px 40px;
+        border-radius: 40px;
+        border: none;
+        margin-top: 100px;
+    }
+    .white {
+        color: $base-color;
+        background-color: white;
+        border-bottom: 1px solid $base-color;
+    }
+    .pink {
+        color: white;
+        background-color: $base-color;
+        border-bottom: 1px solid white;
+    }
+    .business-button.white {
+        background-color: $base-color;
+        color: white;
+        transition: background-color 0.3s;
+    }
+    .business-button.white:hover {
+        background-color: rgba(255,183,178,0.8);
+        transition: background-color 0.3s;
+    }
+    .business-button.white:active {
+        background-color: rgba(255,183,178,0.5);
+        transition: background-color 0.2s;
+    }
+    .business-button.pink {
+        background-color: white;
+        color: $base-color;
+        transition: background-color 0.3s;
+    }
+    .business-button.pink:hover {
+        background-color: rgba(255,255,255,0.8);
+        transition: background-color 0.3s;
+    }
+    .business-button.pink:active {
+        background-color: rgba(255,255,255,0.5);
+        transition: background-color 0.2s;
+    }
+    .business-sidebar {
+        position: absolute;
+        right: 40px;
+        top: 45vh;
+        z-index: 99;
     }
 }
 
@@ -136,44 +215,9 @@ input:focus, button:focus {
     justify-content: space-between;
     width: 100%;
     padding: 15px 30px;
-
-    .sign-in-button {
-        font-weight: 700;
-        font-size: 24px;
-        cursor: pointer;
-        padding: 8px 30px;
-        border-radius: 8px;
-        border: none;
-    }
-    .sign-in-button.white {
-        background-color: $base-color;
-        color: white;
-        transition: background-color 0.3s;
-    }
-    .sign-in-button.white:hover {
-        background-color: rgba(255,183,178,0.8);
-        transition: background-color 0.3s;
-    }
-    .sign-in-button.white:active {
-        background-color: rgba(255,183,178,0.5);
-        transition: background-color 0.2s;
-    }
-    .sign-in-button.pink {
-        background-color: white;
-        color: $base-color;
-        transition: background-color 0.3s;
-    }
-    .sign-in-button.pink:hover {
-        background-color: rgba(255,255,255,0.8);
-        transition: background-color 0.3s;
-    }
-    .sign-in-button.pink:active {
-        background-color: rgba(255,255,255,0.5);
-        transition: background-color 0.2s;
-    }
 }
 
-#business {
+#business-container {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -188,25 +232,61 @@ input:focus, button:focus {
         min-height: 100%;
         width: 100%;
         min-width: 100%;
+
+        .bottom-text {
+            position: absolute;
+            font-weight: 700;
+            font-size: 24px;
+            width: 150px;
+            left: calc(50vw - 75px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
-    #learn-more-page {
-        background-color: $base-color;
+    .cup {
+        padding-top: 100px;
+    }
+    .title-text {
+        max-width: 85%;
+        color: rgba(0,0,0,0.85)
+    }
+}
+
+#learn-more-page {
+    background-color: $base-color;
+    padding: 30px;
+
+    .learn-more-circle {
+        background-color: white;
+        border-radius: 100px;
+        min-width: 100px;
+        min-height: 100px;
+        color: $base-color;
+        font-weight: 700;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+    .title-text {
+        color: white;
+        font-size: 36px;
+        line-height: 1.3;
+    }
+    .right-arrow {
+        max-width: 183px;
+        position: absolute;
+        top: calc(100vh + 185px);
+    }
+    .learn-more-image {
+        margin: 20px;
     }
 }
 
 .rotate-out-2-cw {
 	animation: rotate-out-2-cw 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s both;
-}
-
-.white {
-    color: $base-color;
-    background-color: white;
-    border-bottom: 1px solid $base-color;
-}
-.pink {
-    color: white;
-    background-color: $base-color;
-    border-bottom: 1px solid white;
 }
 
 /**
@@ -239,8 +319,19 @@ input:focus, button:focus {
  */
 
 @media screen and (max-width: 960px) {
-    .landing-container {
+    .container {
         flex-direction: column-reverse !important;
+        padding-bottom: 100px !important;
+    }
+    #learn-more-page {
+        flex-direction: column !important;
+        height: auto !important;
+        min-height: 300% !important;
+    }
+    .container-tri {
+        margin-top: 140px !important;
+        margin-bottom: 200px !important;
+        flex: 1 1 100% !important;
     }
     .container-half {
         flex: 1 1 100% !important;
@@ -249,16 +340,32 @@ input:focus, button:focus {
         margin-bottom: 30px !important;
         height: 600px !important;
     }
+    #business-container .cup {
+        height: 120% !important;
+        padding-top: 150px !important;
+    }
+    .business-button.sign-in {
+        font-size: 18px !important;
+    }
+    .business-button.sign-in-main {
+        font-size: 24px !important;
+    }
     .title-text {
         max-width: 80% !important;
+    }
+    .business-sidebar {
+        right: 20px !important;
+    }
+    .right-arrow {
+        display: none !important;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .landing-container {
+    .container {
         flex-direction: column-reverse !important;
     }
-    .cup {
+    #landing-container .cup {
         margin-bottom: 30px !important;
         height: 400px !important;
     }
@@ -275,6 +382,12 @@ input:focus, button:focus {
     .logo-image {
         width: 70px !important;
         height: 70px !important;
+    }
+    .business-logo {
+        height: 80px !important;
+    }
+    .business-logo-text {
+        width: 300px !important;
     }
 }
 

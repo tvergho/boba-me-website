@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SignUpPage = (props) => {
+const SignUpPage = ({ setRef }) => {
   return (
-    <div className="page" id="sign-up-page" />
+    <div className="page" id="sign-up-page" ref={setRef} />
   );
 };
 

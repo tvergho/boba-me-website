@@ -2,7 +2,7 @@ import React from 'react';
 import Sticky from 'react-stickynode';
 import { BusinessLogo, ForMerchantsText } from './business-assets';
 
-const BusinessHeader = ({ scrollPosition, windowHeight }) => {
+const BusinessHeader = ({ scrollPosition, windowHeight, scroll }) => {
   let styleClass = '';
   let primaryColor = '';
 
@@ -19,10 +19,10 @@ const BusinessHeader = ({ scrollPosition, windowHeight }) => {
       <div id="business-header" className={styleClass}>
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
           <BusinessLogo width="60px" height="60px" color={primaryColor} />
-          <ForMerchantsText style={{ marginLeft: '20px' }} color={primaryColor} />
+          <ForMerchantsText style={{ marginLeft: '20px', marginRight: '10px' }} color={primaryColor} />
         </div>
 
-        <button type="button" className={`sign-in-button ${styleClass}`}>Sign up</button>
+        <button type="button" className={`sign-in business-button ${styleClass}`} onClick={scroll}>Sign up</button>
       </div>
     </Sticky>
   );
