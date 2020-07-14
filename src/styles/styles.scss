@@ -3,6 +3,11 @@ $base-color: #FFB7B2;
 * {
     box-sizing: border-box; 
     font-family: 'Helvetica Neue', sans-serif;
+    max-width: 100%;
+}
+
+html, body {
+    overflow-x: hidden;
 }
 
 body {
@@ -104,7 +109,7 @@ input:focus, button:focus {
     }
     .container-tri {
         margin-top: 0px !important;
-        margin-bottom: 0px !important;
+        margin-bottom: 50px !important;
     }
 }
 
