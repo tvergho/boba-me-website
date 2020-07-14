@@ -501,6 +501,10 @@ input:focus, button:focus {
     }
     .sign-up-form-business {
         margin-bottom: 40px !important;
+
+        button {
+            font-size: 18px !important;
+        }
     }
 }
 
