@@ -2,11 +2,16 @@ import React from 'react';
 import Sticky from 'react-stickynode';
 import { BusinessLogo, ForMerchantsText } from './business-assets';
 
-const BusinessHeader = ({ scrollPosition, windowHeight, scroll }) => {
+const BusinessHeader = ({
+  scrollPosition, windowHeight, scroll, refs,
+}) => {
   let styleClass = '';
   let primaryColor = '';
+  if (refs[0].current) {
+    console.log(refs[0].current.offsetTop, refs[1].current.offsetTop, refs[2].current.offsetTop);
+  }
 
-  if (Math.floor(scrollPosition / windowHeight) % 2 !== 0) {
+  if (refs[0].current && scrollPosition >= refs[1].current.offsetTop && scrollPosition < refs[2].current.offsetTop) {
     styleClass = 'pink';
     primaryColor = 'white';
   } else {

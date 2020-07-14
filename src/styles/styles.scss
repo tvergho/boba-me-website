@@ -215,6 +215,7 @@ input:focus, button:focus {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    max-width: 100%;
     padding: 15px 30px;
 }
 
@@ -400,6 +401,9 @@ input:focus, button:focus {
         flex-direction: column-reverse !important;
         padding-bottom: 100px !important;
     }
+    #intro-page {
+        padding-bottom: 0px !important;
+    }
     #learn-more-page {
         flex-direction: column !important;
         height: 300% !important;
@@ -418,8 +422,8 @@ input:focus, button:focus {
         height: 600px !important;
     }
     #business-container .cup {
-        height: 120% !important;
-        padding-top: 150px !important;
+        height: 400px !important;
+        padding-top: 120px !important;
     }
     .business-button.sign-in {
         font-size: 18px !important;
@@ -436,6 +440,9 @@ input:focus, button:focus {
     .right-arrow {
         display: none !important;
     }
+    .bottom-text {
+        display: none !important;
+    }
     .sign-up-form-business {
         width: 80vw !important;
     }
@@ -445,12 +452,20 @@ input:focus, button:focus {
     .container {
         flex-direction: column-reverse !important;
     }
-    #landing-container .cup {
+    #learn-more-page {
+        flex-direction: column !important;
+        height: auto !important;
+        min-height: auto !important;
+    }
+    .cup {
         margin-bottom: 30px !important;
         height: 400px !important;
     }
+    #business-container .cup {
+        height: 320px !important;
+    }
     .title-text {
-        font-size: 40px !important;
+        font-size: 35px !important;
         max-width: 80% !important;
     }
     .subtext {
@@ -468,9 +483,20 @@ input:focus, button:focus {
     }
     .business-logo-text {
         width: 250px !important;
+        margin-left: 10px !important;
     }
     .container-tri {
         margin-bottom: 0px !important;
+    }
+    .sign-in-main {
+        margin-top: 30px !important;
+        margin-bottom: 30px !important;
+    }
+    .sign-in.business-button {
+        display: none !important;
+    }
+    .sign-up-form-business {
+        margin-bottom: 40px !important;
     }
 }
 

@@ -2,9 +2,9 @@ import React from 'react';
 import BottomText from './bottom-text';
 import Cup from '../cup';
 
-const IntroPage = ({ scroll, height }) => {
+const IntroPage = ({ scroll, height, setRef }) => {
   return (
-    <div className="page container" id="intro-page">
+    <div className="page container" id="intro-page" ref={setRef}>
       <div className="container-half">
         <div className="title-text">
           <div>Leverage social networks to <span style={{ fontWeight: 500 }}>expand your consumer base </span>

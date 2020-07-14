@@ -3,9 +3,11 @@ import Img from 'gatsby-image';
 import BottomText from './bottom-text';
 import { RightArrow } from './business-assets';
 
-const LearnMorePage = ({ height, images, width }) => {
+const LearnMorePage = ({
+  height, images, width, setRef,
+}) => {
   return (
-    <div className="page container" id="learn-more-page">
+    <div className="page container" id="learn-more-page" ref={setRef}>
       <div className="container-tri">
         <div>
           <div className="learn-more-circle">1</div>

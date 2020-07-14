@@ -15,6 +15,10 @@ class Business extends Component {
 
   signUp = createRef();
 
+  intro = createRef();
+
+  learnMore = createRef();
+
   constructor(props) {
     super(props);
 
@@ -26,20 +30,32 @@ class Business extends Component {
   }
 
   componentDidMount() {
-    const element = this.business.current;
-    const snapElement = new ScrollSnap(element, {
-      snapDestinationY: '100%',
-      duration: 300,
-      timeout: 0,
-    });
-    snapElement.bind(this.onSnap);
-
+    this.bind();
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  bind = () => {
+    console.log('bind');
+    const element = this.business.current;
+    this.snapElement = new ScrollSnap(element, {
+      snapDestinationY: '100%',
+      duration: 300,
+      timeout: 0,
+    });
+    this.snapElement.bind(this.onSnap);
+  }
+
+  unbind = () => {
+    console.log('unbind');
+    if (this.snapElement) {
+      this.snapElement.unbind();
+      this.snapElement = null;
+    }
   }
 
   onSnap = () => {
@@ -52,9 +68,15 @@ class Business extends Component {
 
   updateWindowDimensions = () => {
     this.setState({ windowHeight: window.innerHeight, windowWidth: window.innerWidth });
+    if (window.innerWidth < 960) {
+      this.unbind();
+    } else {
+      this.bind();
+    }
   }
 
   scrollToSignUp = () => {
+    console.log(this.signUp);
     this.signUp.current.scrollIntoView({ behavior: 'smooth' });
   }
 
@@ -65,16 +87,17 @@ class Business extends Component {
 
     return (
       <div onScroll={this.onScroll} id="business">
-        <BusinessHeader scrollPosition={this.state.scrollPosition} windowHeight={wh} scroll={this.scrollToSignUp} />
+        <BusinessHeader scrollPosition={this.state.scrollPosition} windowHeight={wh} scroll={this.scrollToSignUp} refs={[this.intro, this.learnMore, this.signUp]} />
         {this.state.windowWidth > 960 ? <SideBar selected={Math.floor((this.state.scrollPosition + 0.45 * wh) / wh)} /> : <></>}
 
         <div id="business-container" ref={this.business}>
           <SEO title="Businesses" />
-          <IntroPage scroll={this.scrollToSignUp} height={wh} />
+          <IntroPage scroll={this.scrollToSignUp} height={wh} setRef={this.intro} />
           <LearnMorePage
             height={wh}
             images={images}
             width={this.state.windowWidth}
+            setRef={this.learnMore}
           />
           <SignUpPage setRef={this.signUp} />
         </div>
