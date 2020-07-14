@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
 import React from 'react';
+import mainStyles from '../../styles/index.module.scss';
 
 const LogoSVG = () => {
   return (
-    <svg viewBox="0 0 446 85" version="1.1" xmlns="http://www.w3.org/2000/svg" className="logo">
+    <svg viewBox="0 0 446 85" version="1.1" xmlns="http://www.w3.org/2000/svg" className={mainStyles.logo}>
       <title>bobame</title>
       <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="Desktop-HD" transform="translate(-914.000000, -91.000000)">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Ripples from 'react-ripples';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import businessStyles from '../../styles/business.module.scss';
 
 const axios = require('axios');
 
@@ -37,26 +38,26 @@ const SignUpPage = ({ setRef }) => {
   const enabled = name.length > 0 && address.length > 0 && email.length > 0 && phone.length > 0;
 
   return (
-    <div className="page" id="sign-up-page" ref={setRef}>
-      <div className="sign-up-form-business">
+    <div className={businessStyles.page} ref={setRef}>
+      <div className={businessStyles.signUpFormBusiness}>
         <div>
-          <div className="title">Beta Sign-Up</div>
-          <div className="subtitle">We’ll contact you prior to the beta release of BobaMe, and there’s no commitment to join the platform.</div>
+          <div className={businessStyles.title}>Beta Sign-Up</div>
+          <div className={businessStyles.subtitle}>We’ll contact you prior to the beta release of BobaMe, and there’s no commitment to join the platform.</div>
         </div>
 
-        <form className={`sign-up-form ${submitted ? 'rotate-out-2-cw' : ''}`} style={{ display: delayedSubmit ? 'none' : 'flex' }}>
+        <form className={`${businessStyles.signUpForm} ${submitted ? 'rotate-out-2-cw' : ''}`} style={{ display: delayedSubmit ? 'none' : 'flex' }}>
           <input placeholder="Cafè Name" name="name" id="name" value={name} onChange={(e) => { setName(e.target.value); }} />
           <input placeholder="Cafè Address" name="address" id="address" value={address} onChange={(e) => { setAddress(e.target.value); }} />
           <input placeholder="Email" name="email" id="email" value={email} onChange={(e) => { setEmail(e.target.value); }} />
           <input placeholder="Phone" name="phone" id="phone" value={phone} onChange={(e) => { setPhone(e.target.value); }} />
           {enabled
-            ? <Ripples during={1500}><button type="button" className="submit" onClick={submit} disabled={!enabled}>Join Our Platform</button></Ripples>
-            : <button type="button" className="submit" onClick={submit} disabled={!enabled} style={{ marginTop: '30px' }}>Join Our Platform</button>}
+            ? <Ripples during={1500}><button type="button" className={businessStyles.submit} onClick={submit} disabled={!enabled}>Join Our Platform</button></Ripples>
+            : <button type="button" className={businessStyles.submit} onClick={submit} disabled={!enabled} style={{ marginTop: '30px' }}>Join Our Platform</button>}
         </form>
 
-        <div className="submitted" style={{ display: delayedSubmit ? 'flex' : 'none' }}>
+        <div className={businessStyles.submitted} style={{ display: delayedSubmit ? 'flex' : 'none' }}>
           <FontAwesomeIcon icon={faCheckCircle} size="3x" style={{ marginTop: '30px' }} />
-          <div className="submitted-text">Your information has been submitted.</div>
+          <div className={businessStyles.submittedText}>Your information has been submitted.</div>
         </div>
       </div>
     </div>

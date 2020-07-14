@@ -1,13 +1,13 @@
 /* eslint-disable max-len */
 import React from 'react';
 
-const Cup = ({ background }) => {
+const Cup = ({ background, className }) => {
   let fill = 'white';
   if (background === 'white') {
     fill = '#FFB7B2';
   }
   return (
-    <svg viewBox="0 0 496 607" version="1.1" xmlns="http://www.w3.org/2000/svg" className="cup">
+    <svg viewBox="0 0 496 607" version="1.1" xmlns="http://www.w3.org/2000/svg" className={`cup ${className}`}>
       <title>BobaMe</title>
       <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="Desktop-HD" transform="translate(-1170.000000, -289.000000)">

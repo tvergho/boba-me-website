@@ -9,6 +9,7 @@ import {
   IntroPage, LearnMorePage, SignUpPage, BusinessHeader,
 } from '../components/business';
 import { SideBar } from '../components/business/business-assets';
+import businessStyles from '../styles/business.module.scss';
 
 class Business extends Component {
   business = createRef();
@@ -86,11 +87,11 @@ class Business extends Component {
     const images = [data.delivery.childImageSharp.fixed, data.borrow.childImageSharp.fixed, data.report.childImageSharp.fixed];
 
     return (
-      <div onScroll={this.onScroll} id="business">
+      <div onScroll={this.onScroll} className={businessStyles.business}>
         <BusinessHeader scrollPosition={this.state.scrollPosition} windowHeight={wh} scroll={this.scrollToSignUp} refs={[this.intro, this.learnMore, this.signUp]} />
         {this.state.windowWidth > 960 ? <SideBar selected={Math.floor((this.state.scrollPosition + 0.45 * wh) / wh)} /> : <></>}
 
-        <div id="business-container" ref={this.business}>
+        <div className={businessStyles.businessContainer} ref={this.business}>
           <SEO title="Businesses" />
           <IntroPage scroll={this.scrollToSignUp} height={wh} setRef={this.intro} />
           <LearnMorePage

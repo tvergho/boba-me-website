@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Ripples from 'react-ripples';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import mainStyles from '../../styles/index.module.scss';
 
 const SignUpContainer = ({
   signUp, errors, input, onChange, submitted,
@@ -17,21 +18,21 @@ const SignUpContainer = ({
   }, [submitted]);
 
   return (
-    <div className="container-half left">
-      <div className="title-text">
+    <div className={`container-half ${mainStyles.containerHalf} left`}>
+      <div className={mainStyles.titleText}>
         <div>Share the <span style={{ fontWeight: 500 }}>best boba </span>
           with the <span style={{ fontWeight: 500 }}>best people.</span>
         </div>
       </div>
 
-      <div className="subtext">Sign up for updates</div>
+      <div className={mainStyles.subtext}>Sign up for updates</div>
 
-      <div className="submitted" style={{ display: delayedSubmit ? 'block' : 'none' }}>
+      <div className={mainStyles.submitted} style={{ display: delayedSubmit ? 'block' : 'none' }}>
         <FontAwesomeIcon icon={faCheckCircle} size="3x" style={{ marginTop: '30px' }} />
-        <div className="submitted-text">Your information has been submitted.</div>
+        <div className={mainStyles.submittedText}>Your information has been submitted.</div>
       </div>
 
-      <form className={`sign-up-form ${submitted ? 'rotate-out-2-cw' : ''}`} style={{ display: delayedSubmit ? 'none' : 'flex' }}>
+      <form className={`${mainStyles.signUpForm} ${submitted ? 'rotate-out-2-cw' : ''}`} style={{ display: delayedSubmit ? 'none' : 'flex' }}>
         <input type="text"
           placeholder="first name"
           value={firstName}
@@ -56,7 +57,7 @@ const SignUpContainer = ({
           id="email"
           style={{ border: errors.email ? '2px solid red' : '' }}
         />
-        <Ripples during={1500}><button type="button" className="submit" onClick={signUp}>Submit</button></Ripples>
+        <Ripples during={1500}><button type="button" className={mainStyles.submit} onClick={signUp}>Submit</button></Ripples>
       </form>
     </div>
   );

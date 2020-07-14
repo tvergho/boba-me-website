@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import { LogoHeader, SignUpContainer, BobaContainer } from '../components/landing';
 import SEO from '../components/seo';
+import mainStyles from '../styles/index.module.scss';
 
 const axios = require('axios');
 
@@ -69,11 +70,11 @@ class Home extends Component {
   render() {
     const { data } = this.props;
     return (
-      <div className="landing">
+      <div className={mainStyles.landing}>
         <SEO title="Home" />
         <LogoHeader logo={data.logo.childImageSharp.fixed} />
 
-        <div id="landing-container" className="container">
+        <div className={`container ${mainStyles.landingContainer}`}>
           <SignUpContainer errors={this.state.errors} signUp={this.signUp} input={this.state.input} onChange={this.onChange} submitted={this.state.submitted} />
           <BobaContainer />
         </div>
