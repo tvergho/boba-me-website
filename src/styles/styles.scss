@@ -452,24 +452,27 @@ input:focus, button:focus {
     .container {
         flex-direction: column-reverse !important;
     }
-    #learn-more-page {
-        flex-direction: column !important;
-        height: auto !important;
-        min-height: auto !important;
-    }
     .cup {
         margin-bottom: 30px !important;
         height: 400px !important;
+    }
+    #learn-more-page {
+        height: 500% !important;
+        min-height: 500% !important;
     }
     #business-container .cup {
         height: 320px !important;
     }
     .title-text {
-        font-size: 35px !important;
+        font-size: 28px !important;
         max-width: 80% !important;
     }
+    .container-tri {
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
     .subtext {
-        font-size: 30px !important;
+        font-size: 24px !important;
     }
     .logo {
         width: 250px !important;
@@ -491,6 +494,7 @@ input:focus, button:focus {
     .sign-in-main {
         margin-top: 30px !important;
         margin-bottom: 30px !important;
+        font-size: 12px !important;
     }
     .sign-in.business-button {
         display: none !important;
