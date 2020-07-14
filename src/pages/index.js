@@ -50,7 +50,7 @@ class Home extends Component {
       this.setState({ submitted: true });
       const params = {
         method: 'POST',
-        url: 'https://03q30dqfqi.execute-api.us-east-2.amazonaws.com/dev/interest',
+        url: 'https://api.bobame.app/users/interest',
         data: this.state.input,
       };
       axios(params);
