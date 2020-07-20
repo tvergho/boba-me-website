@@ -16,60 +16,63 @@ $base-color: #FFB7B2;
     margin-top: 20px;
 }
 
-.business {
-    .sign-in {
-        font-weight: 700;
-        font-size: 24px;
-        cursor: pointer;
-        padding: 8px 30px;
-        border-radius: 8px;
-        border: none;
-    }
-    .sign-in-main {
-        font-weight: 700;
-        font-size: 36px;
-        cursor: pointer;
-        padding: 16px 40px;
-        border-radius: 40px;
-        border: none;
-        margin-top: 30px;
-    }
-    .white {
-        color: $base-color;
-        background-color: white;
-        border-bottom: 1px solid $base-color;
-    }
-    .pink {
-        color: white;
-        background-color: $base-color;
-        border-bottom: 1px solid white;
-    }
-    .business-button.white {
-        background-color: $base-color;
-        color: white;
-        transition: background-color 0.3s;
-    }
-    .business-button.white:hover {
-        background-color: rgba(255,183,178,0.8);
-        transition: background-color 0.3s;
-    }
-    .business-button.white:active {
-        background-color: rgba(255,183,178,0.5);
-        transition: background-color 0.2s;
-    }
-    .business-button.pink {
-        background-color: white;
-        color: $base-color;
-        transition: background-color 0.3s;
-    }
-    .business-button.pink:hover {
-        background-color: rgba(255,255,255,0.8);
-        transition: background-color 0.3s;
-    }
-    .business-button.pink:active {
-        background-color: rgba(255,255,255,0.5);
-        transition: background-color 0.2s;
-    }
+.sign-in {
+    font-weight: 700;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px 30px;
+    border-radius: 8px;
+    border: none;
+}
+
+.sign-in-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 36px;
+    cursor: pointer;
+    padding: 16px 40px;
+    border-radius: 40px;
+    border: none;
+    margin-top: 30px;
+}
+
+.white {
+    color: $base-color;
+    background-color: white;
+    border-bottom: 1px solid $base-color;
+}
+.pink {
+    color: white;
+    background-color: $base-color;
+    border-bottom: 1px solid white;
+}
+.business-button.white {
+    background-color: $base-color;
+    color: white;
+    transition: background-color 0.3s;
+}
+.business-button.white:hover {
+    background-color: rgba(255,183,178,0.8);
+    transition: background-color 0.3s;
+}
+.business-button.white:active {
+    background-color: rgba(255,183,178,0.5);
+    transition: background-color 0.2s;
+}
+.business-button.pink {
+    background-color: white;
+    color: $base-color;
+    transition: background-color 0.3s;
+}
+.business-button.pink:hover {
+    background-color: rgba(255,255,255,0.8);
+    transition: background-color 0.3s;
+}
+.business-button.pink:active {
+    background-color: rgba(255,255,255,0.5);
+    transition: background-color 0.2s;
 }
 
 .business-sidebar {
@@ -105,6 +108,7 @@ $base-color: #FFB7B2;
     flex-direction: column;
     position: absolute;
     overflow: auto;
+    overflow-x: hidden;
     top: 0;
     left: 0;
     width: 100%;
@@ -233,17 +237,19 @@ $base-color: #FFB7B2;
 }
 
 @media screen and (max-width: 960px) {
+    .business-container {
+        min-height: 100% !important;
+        height: auto !important;
+    }
     .intro-page {
         padding-bottom: 0px !important;
     }
     .learn-more-page {
         flex-direction: column !important;
-        height: 350% !important;
-        min-height: 350% !important;
     }
     .business-container .cup {
         max-height: 500px !important;
-        padding-top: 120px !important;
+        padding-top: 80px !important;
     }
     .business-button.sign-in {
         font-size: 18px !important;
@@ -263,6 +269,10 @@ $base-color: #FFB7B2;
     .sign-up-form-business {
         width: 80vw !important;
     }
+    .sign-in-main {
+        margin-top: 30px !important;
+        margin-bottom: 30px !important;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -272,14 +282,6 @@ $base-color: #FFB7B2;
     .title-text {
         font-size: 26px !important;
         max-width: 80% !important;
-        padding-bottom: 20px !important;
-    }
-    .learn-more-page {
-        height: 350% !important;
-        min-height: 350% !important;
-    }
-    .business-container .cup {
-        max-height: 400px !important;
     }
     .business-header {
         padding: 10px !important;
@@ -292,11 +294,6 @@ $base-color: #FFB7B2;
         width: 250px !important;
         margin-left: 10px !important;
     }
-    .sign-in-main {
-        margin-top: 30px !important;
-        margin-bottom: 30px !important;
-        font-size: 12px !important;
-    }
     .sign-in.business-button {
         display: none !important;
     }
@@ -304,7 +301,7 @@ $base-color: #FFB7B2;
         margin-top: 75px !important;
         margin-bottom: 40px !important;
 
-        button {
+        .submit {
             font-size: 18px !important;
         }
     }
