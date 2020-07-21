@@ -25,7 +25,7 @@ const LearnMorePage = ({
       <div className="container-tri">
         <div>
           <div className={businessStyles.learnMoreCircle}>2</div>
-          <RightArrow style={{ left: '60vw' }} />
+          <RightArrow style={{ left: '58vw' }} />
         </div>
 
         <Img fixed={images[1]} className={businessStyles.learnMoreImage} />

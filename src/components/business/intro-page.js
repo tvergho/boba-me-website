@@ -8,9 +8,8 @@ const IntroPage = ({ scroll, height, setRef }) => {
     <div className={`${businessStyles.page} container ${businessStyles.introPage}`} ref={setRef}>
       <div className="container-half">
         <div className={businessStyles.titleText}>
-          <div>Leverage social networks to <span style={{ fontWeight: 500 }}>expand your consumer base </span>
-            and <span style={{ fontWeight: 500 }}>compete with other shops.</span>
-          </div>
+          Leverage social networks to <span style={{ fontWeight: 500 }}>expand your consumer base </span>
+          and <span style={{ fontWeight: 500 }}>compete with other shops.</span>
         </div>
 
         <button className={`${businessStyles.businessButton} ${businessStyles.signInMain} ${businessStyles.white}`} type="button" onClick={scroll}>Sign up for our beta</button>

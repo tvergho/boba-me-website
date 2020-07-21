@@ -4,6 +4,7 @@ $base-color: #FFB7B2;
     font-size: 50px;
     font-weight: 300;
     line-height: 1.1;
+    overflow-y: hidden;
 }
 .submitted { 
     animation: fade-in 0.75s ease-in;
@@ -160,6 +161,9 @@ $base-color: #FFB7B2;
     .learn-more-image {
         margin: 20px;
     }
+    img {
+        object-fit: contain !important;
+    }
 }
 
 .sign-up-form-business {
@@ -249,7 +253,7 @@ $base-color: #FFB7B2;
     }
     .business-container .cup {
         max-height: 500px !important;
-        padding-top: 80px !important;
+        padding-top: 100px !important;
     }
     .business-button.sign-in {
         font-size: 18px !important;
@@ -268,10 +272,34 @@ $base-color: #FFB7B2;
     }
     .sign-up-form-business {
         width: 80vw !important;
+        margin-bottom: 50px !important;
     }
     .sign-in-main {
         margin-top: 30px !important;
         margin-bottom: 30px !important;
+    }
+}
+
+@media (max-height: 900px), (max-width: 1200px) {
+    .intro-page {
+        .title-text {
+            font-size: 32px !important;
+        }
+    }
+    .learn-more-page {
+        .title-text {
+            font-size: 26px !important;
+            margin: 0px !important;
+        }
+        .learn-more-image {
+            margin: 0px !important;
+        }
+    }
+    .title, .subtitle {
+        font-size: 24px !important;
+    }
+    .sign-up-form-business {
+        width: 80vw !important;
     }
 }
 

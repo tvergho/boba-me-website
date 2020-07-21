@@ -4,6 +4,7 @@ $base-color: #FFB7B2;
     box-sizing: border-box; 
     font-family: 'Helvetica Neue', sans-serif;
     max-width: 100%;
+    overflow-x: hidden;
 }
 
 html, body {
@@ -86,8 +87,8 @@ input:focus, button:focus {
         padding-bottom: 100px !important;
     }
     .container-tri {
-        margin-top: 140px !important;
-        margin-bottom: 200px !important;
+        margin-top: 0px !important;
+        margin-bottom: 50px !important;
         flex: 1 1 100% !important;
     }
     .container-half {
@@ -106,10 +107,6 @@ input:focus, button:focus {
     .cup {
         margin-bottom: 30px !important;
         height: 400px !important;
-    }
-    .container-tri {
-        margin-top: 0px !important;
-        margin-bottom: 50px !important;
     }
 }
 
