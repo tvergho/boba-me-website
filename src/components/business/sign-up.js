@@ -40,7 +40,7 @@ const SignUpPage = ({ setRef }) => {
     axios(params);
   };
 
-  const enabled = name.length > 0 && address.length > 0 && email.length > 0 && businessPhone.length > 0 && contactName.length > 0 && contactPhone.length > 0;
+  const enabled = name?.length > 0 && address?.length > 0 && email?.length > 0 && businessPhone?.length > 0 && contactName?.length > 0 && contactPhone?.length > 0;
 
   return (
     <div className={businessStyles.page} ref={setRef}>

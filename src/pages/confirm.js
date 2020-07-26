@@ -11,7 +11,7 @@ import useWindowSize from '../utils/useWindowSize';
 import useAuth from '../utils/useAuth';
 
 const ConfirmSignUp = () => {
-  const [user, auth] = useAuth();
+  const { user, auth } = useAuth();
   const { height } = useWindowSize();
   const [step, setStep] = useState(0);
 
@@ -19,7 +19,10 @@ const ConfirmSignUp = () => {
     if (auth && !auth.isSignInWithEmailLink(window.location.href)) {
       navigate('/business');
     }
-  }, [auth]);
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, [user, auth]);
 
   const increment = () => {
     setStep((prevStep) => prevStep + 1);
@@ -29,7 +32,7 @@ const ConfirmSignUp = () => {
     <>
       <SEO title="Confirm Sign Up" />
       <BusinessHeader />
-      <div className={confirmStyles.background}>
+      <div className="full-background">
         <div className={confirmStyles.pageHeader}>{height < 600 ? 'Confirm Account' : 'Confirm Your Business Account'}</div>
         {step === 0 && <AccountDetails increment={increment} />}
         {step === 1 && <BusinessDetails increment={increment} />}

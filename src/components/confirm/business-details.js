@@ -36,7 +36,7 @@ Geocode.setApiKey('AIzaSyDgbpn2Mnmxm_YmEnuuQKOJT5zMcD6XW90');
 
 const BusinessDetails = ({ increment }) => {
   const [pushBusiness, { loading: isUpdatingBusiness, error: isUpdatingError, data }] = useMutation(UPDATE_BUSINESS);
-  const [user] = useAuth();
+  const { user } = useAuth();
 
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState('');

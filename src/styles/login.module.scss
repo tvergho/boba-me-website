@@ -1,0 +1,22 @@
+$base-color: #FFB7B2;
+
+.background {
+    background-color: $base-color;
+}
+
+.login-form {
+    border-radius: 10px;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    width: 45vw;
+    background-color: white;
+    padding: 20px 50px;
+    min-height: 50vh;
+
+    .title {
+        text-align: center;
+        font-size: 36px;
+        font-weight: 700;
+    }
+}

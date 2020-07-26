@@ -7,6 +7,7 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     localStorage.setItem('expectSignIn', '1');
   } else {
+    console.log('removed');
     localStorage.removeItem('expectSignIn');
   }
 });

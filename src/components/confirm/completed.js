@@ -1,5 +1,6 @@
 import React from 'react';
 import Lottie from 'react-lottie';
+import { navigate } from 'gatsby';
 import confirmStyles from '../../styles/confirm.module.scss';
 import * as animationData from './confirm-popup.json';
 
@@ -23,7 +24,7 @@ const Completed = () => {
         style={{ marginTop: '5vh' }}
       />
 
-      <button type="button" className={`submit ${confirmStyles.fadeIn}`}>Go to Dashboard</button>
+      <button type="button" className={`submit ${confirmStyles.fadeIn}`} onClick={() => { navigate('/dashboard'); }}>Go to Dashboard</button>
     </div>
   );
 };

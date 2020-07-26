@@ -1,9 +1,16 @@
 import React from 'react';
 import { BusinessHeader } from '../business';
+import loginStyles from '../../styles/login.module.scss';
+import LoginForm from './login-form';
 
 const Login = () => {
   return (
-    <BusinessHeader />
+    <>
+      <BusinessHeader pink />
+      <div className={`full-background ${loginStyles.background}`}>
+        <LoginForm />
+      </div>
+    </>
   );
 };
 

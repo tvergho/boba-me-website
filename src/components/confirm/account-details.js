@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-useless-escape */
 import React, { useState, useEffect } from 'react';
 import { gql, useMutation } from '@apollo/client';
@@ -38,7 +39,7 @@ const isSSR = typeof window === 'undefined';
 
 const AccountDetails = ({ increment }) => {
   const [addBusiness, { error: isAddingError, data }] = useMutation(ADD_BUSINESS);
-  const [user, auth, firebase] = useAuth();
+  const { auth, firebaseExport: firebase } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
