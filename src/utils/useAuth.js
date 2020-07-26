@@ -1,21 +1,26 @@
+/* eslint-disable consistent-return */
 import React, { useEffect } from 'react';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from 'gatsby-plugin-firebase';
 
 const useAuth = () => {
-  const fireUser = firebase.auth().currentUser;
-  const [user, setUser] = React.useState(fireUser);
+  const [user, setUser] = React.useState(null);
+  const [auth, setAuth] = React.useState(undefined);
 
   useEffect(() => {
+    setAuth(firebase.auth());
+  }, [firebase]);
+
+  useEffect(() => {
+    if (auth === undefined) return;
+
     const unlisten = firebase.auth().onAuthStateChanged((newUser) => {
-      console.log(newUser);
       setUser(newUser);
     });
 
-    return unlisten;
-  }, []);
+    return () => { unlisten(); };
+  }, [auth]);
 
-  return user;
+  return [user, auth];
 };
 
 export default useAuth;

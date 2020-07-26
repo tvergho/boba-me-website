@@ -1,9 +1,9 @@
 /* eslint-disable no-useless-escape */
 import React, { useState, useEffect } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import firebase from 'gatsby-plugin-firebase';
 import ReactPasswordStrength from 'react-password-strength';
 import FormBox from './form-box';
+import useAuth from '../../utils/useAuth';
 
 const ADD_BUSINESS = gql`
 mutation create ($business: CreateBusinessInput!) {
@@ -34,8 +34,11 @@ const validateInput = (email, password, confirmPassword, setError) => {
   return isError;
 };
 
+const isSSR = typeof window === 'undefined';
+
 const AccountDetails = ({ increment }) => {
   const [addBusiness, { error: isAddingError, data }] = useMutation(ADD_BUSINESS);
+  const [user, auth] = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -86,14 +89,14 @@ const AccountDetails = ({ increment }) => {
     if (!validateInput(email, password, confirmPassword, setError) && typeof window !== 'undefined') {
       setLoading(true);
       try {
-        const credential = firebase.auth().EmailAuthProvider.credentialWithLink(email, window.location.href);
+        const credential = auth.EmailAuthProvider.credentialWithLink(email, window.location.href);
 
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-          .then((user) => {
-            firebase.auth().currentUser.reauthenticateWithCredential(credential)
+        auth.createUserWithEmailAndPassword(email, password)
+          .then(() => {
+            auth.currentUser.reauthenticateWithCredential(credential)
               .then(() => {
                 const business = {
-                  businessId: firebase.auth().currentUser.uid,
+                  businessId: user.uid,
                   email,
                 };
                 console.log(business);
@@ -135,13 +138,15 @@ const AccountDetails = ({ increment }) => {
   return (
     <FormBox title="Account Details" enabled={enabled} error={error} submit={submit} loading={loading}>
       <input placeholder="Email" name="email" id="email" value={email} onChange={handleChange} />
-      <ReactPasswordStrength
-        style={{ width: '100%', border: '0px', marginBottom: '15px' }}
-        inputProps={{ placeholder: 'Password', name: 'password', style: { marginBottom: '0px' } }}
-        changeCallback={handlePasswordChange}
-        minLength={8}
-        minScore={0}
-      />
+      {isSSR ? <></> : (
+        <ReactPasswordStrength
+          style={{ width: '100%', border: '0px', marginBottom: '15px' }}
+          inputProps={{ placeholder: 'Password', name: 'password', style: { marginBottom: '0px' } }}
+          changeCallback={handlePasswordChange}
+          minLength={8}
+          minScore={0}
+        />
+      )}
       <input placeholder="Confirm Password" type="password" name="confirm" id="confirm" value={confirmPassword} onChange={handleChange} />
     </FormBox>
   );

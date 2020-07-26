@@ -6,7 +6,7 @@ import PrivateRoute from '../components/private-route';
 import useAuth from '../utils/useAuth';
 
 const DashboardPage = () => {
-  const user = useAuth();
+  const [user] = useAuth();
 
   return (
     <Router basepath="/dashboard">

@@ -6,7 +6,7 @@ import Loader from 'react-loader-spinner';
 const PrivateRoute = ({
   component: Component, location, user, ...rest
 }) => {
-  if (!user && location.pathname !== '/dashboard/login' && !localStorage.getItem('expectSignIn')) {
+  if (!user && location.pathname !== '/dashboard/login' && typeof window !== 'undefined' && !localStorage.getItem('expectSignIn')) {
     navigate('/dashboard/login');
     return null;
   }
