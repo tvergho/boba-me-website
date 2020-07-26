@@ -1,10 +1,11 @@
 /* eslint-disable no-useless-escape */
 import React, { useState, useEffect } from 'react';
-import ReactPasswordStrength from 'react-password-strength';
 import { gql, useMutation } from '@apollo/client';
 import * as firebase from 'firebase/app';
 import FormBox from './form-box';
 import 'firebase/auth';
+
+const ReactPasswordStrength = typeof window !== 'undefined' ? require('react-password-strength') : null;
 
 const ADD_BUSINESS = gql`
 mutation create ($business: CreateBusinessInput!) {
