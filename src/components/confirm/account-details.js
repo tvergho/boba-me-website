@@ -38,7 +38,7 @@ const isSSR = typeof window === 'undefined';
 
 const AccountDetails = ({ increment }) => {
   const [addBusiness, { error: isAddingError, data }] = useMutation(ADD_BUSINESS);
-  const [user, auth] = useAuth();
+  const [user, auth, firebase] = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -86,17 +86,17 @@ const AccountDetails = ({ increment }) => {
   };
 
   const submit = () => {
-    if (!validateInput(email, password, confirmPassword, setError) && typeof window !== 'undefined') {
+    if (!validateInput(email, password, confirmPassword, setError) && typeof window !== 'undefined' && auth) {
       setLoading(true);
       try {
-        const credential = auth.EmailAuthProvider.credentialWithLink(email, window.location.href);
+        const credential = firebase.auth.EmailAuthProvider.credentialWithLink(email, window.location.href);
 
         auth.createUserWithEmailAndPassword(email, password)
           .then(() => {
             auth.currentUser.reauthenticateWithCredential(credential)
               .then(() => {
                 const business = {
-                  businessId: user.uid,
+                  businessId: auth.currentUser.uid,
                   email,
                 };
                 console.log(business);

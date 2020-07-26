@@ -16,10 +16,10 @@ const ConfirmSignUp = () => {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    if (auth.isSignInWithEmailLink(window.location.href)) {
+    if (auth && !auth.isSignInWithEmailLink(window.location.href)) {
       navigate('/business');
     }
-  }, []);
+  }, [auth]);
 
   const increment = () => {
     setStep((prevStep) => prevStep + 1);
