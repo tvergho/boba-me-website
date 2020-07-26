@@ -40,7 +40,6 @@ class Business extends Component {
   }
 
   bind = () => {
-    console.log('bind');
     const element = this.business.current;
     this.snapElement = new ScrollSnap(element, {
       snapDestinationY: '100%',
@@ -51,7 +50,6 @@ class Business extends Component {
   }
 
   unbind = () => {
-    console.log('unbind');
     if (this.snapElement) {
       this.snapElement.unbind(this.onSnap);
       this.snapElement = null;
@@ -87,7 +85,7 @@ class Business extends Component {
 
     return (
       <div onScroll={this.onScroll} className={businessStyles.business}>
-        <BusinessHeader scrollPosition={this.state.scrollPosition} windowHeight={wh} scroll={this.scrollToSignUp} refs={[this.intro, this.learnMore, this.signUp]} />
+        <BusinessHeader scrollPosition={this.state.scrollPosition} scroll={this.scrollToSignUp} refs={[this.intro, this.learnMore, this.signUp]} />
         {this.state.windowWidth > 960 ? <SideBar selected={Math.floor((this.state.scrollPosition + 0.45 * wh) / wh)} /> : <></>}
 
         <div className={businessStyles.businessContainer} ref={this.business}>

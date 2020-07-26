@@ -7,6 +7,11 @@ $base-color: #FFB7B2;
     overflow-x: hidden;
 }
 
+.submitted-text {
+    font-size: 30px;
+    margin-top: 20px;
+}
+
 html, body {
     overflow-x: hidden;
 }
@@ -18,6 +23,28 @@ body {
 
 input:focus, button:focus {
     outline: 0;
+}
+
+#react-select-2-input {
+    margin-bottom: 0;
+    padding: 10px;
+}
+
+button {
+    transition: opacity 0.3s;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
+button:active {
+    opacity: 0.5;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: default !important;
 }
 
 .container {
@@ -42,13 +69,9 @@ input:focus, button:focus {
     margin-top: 120px;
 }
 .react-ripples {
-    transition: transform 0.3s;
     margin-top: 30px;
     border-radius: 15px;
     width: 100%;
-}
-.react-ripples:hover {
-    transform: scale(1.1);
 }
 .cup {
     height: 700px;
@@ -59,6 +82,113 @@ input:focus, button:focus {
 
 .rotate-out-2-cw {
 	animation: rotate-out-2-cw 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s both;
+}
+
+.sign-up-form {
+    border: 3px solid $base-color;
+    border-radius: 10px;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .title {
+        font-size: 36px;
+        font-weight: 700;
+    }
+    .subtitle {
+        font-size: 28px;
+        font-weight: 300;
+        color: #6D7278;
+        margin-top: 10px;
+        margin-bottom: 40px;
+    }
+    input {
+        margin-bottom: 15px;
+        padding: 10px 20px;
+        color: #6D7278;
+        font-weight: 300;
+        font-size: 20px;
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid rgba(109, 114, 120, 0.4);
+        font-family: 'Helvetica Neue', sans-serif;
+    }
+    input::placeholder {
+        color: #6D7278;
+    }
+    input:focus::placeholder {
+        color: transparent;
+    }
+    .submit {
+        background-color: $base-color;
+        color: white;
+        font-weight: 700;
+        font-size: 30px;
+        cursor: pointer;
+        min-width: 100%;
+        height: 55px;
+        border-radius: 15px;
+        border: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .submit:disabled {
+        opacity: 0.7;
+    }
+    .react-ripples {
+        width: 100%;
+    }
+    .submitted {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: rgba(0,0,0,0.8);
+    }
+    .submitted-text {
+        text-align: center;
+    }
+}
+
+.ReactPasswordStrength-strength-desc {
+    width: auto;
+}
+
+.dropzone {
+    color: rgba(0,0,0,0.8);
+    font-size: 18px;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left !important;
+
+
+    ul {
+        padding-inline-start: 20px !important;
+    }
+
+    button {
+        padding: 10px 15px;
+        background-color: $base-color;
+        border: 0;
+        border-radius: 10px;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+        align-self: start;
+        margin-top: 0px !important;
+    }
 }
 
 /**
@@ -81,6 +211,20 @@ input:focus, button:focus {
 /**
  * Media Rules
  */
+
+ @media screen and (max-width: 1200px) {
+    .sign-up-form {
+        width: 80vw !important;
+
+        .title {
+            font-size: 30px !important;
+        }
+        .subtitle {
+            font-size: 24px !important;
+        }
+    }
+}
+
 @media screen and (max-width: 960px) {
     .container {
         flex-direction: column-reverse !important;
@@ -98,6 +242,16 @@ input:focus, button:focus {
         margin-bottom: 30px !important;
         height: 600px !important;
     }
+    .sign-up-form {
+        margin-bottom: 50px !important;
+
+        .title {
+            font-size: 26px !important
+        }
+        .subtitle {
+            font-size: 18px !important;
+        }
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -107,6 +261,20 @@ input:focus, button:focus {
     .cup {
         margin-bottom: 30px !important;
         height: 400px !important;
+    }
+    .sign-up-form {
+        margin-top: 75px !important;
+        margin-bottom: 40px !important;
+
+        .submit {
+            font-size: 18px !important;
+        }
+        input {
+            font-size: 14px !important;
+        }
+    }
+    .dropzone {
+        font-size: 14px !important;
     }
 }
 

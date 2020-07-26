@@ -4,17 +4,7 @@ $base-color: #FFB7B2;
     font-size: 50px;
     font-weight: 300;
     line-height: 1.1;
-    overflow-y: hidden;
-}
-.submitted { 
-    animation: fade-in 0.75s ease-in;
-    animation-fill-mode: forwards;
-    opacity: 0;
-    min-height: 275px;
-}
-.submitted-text {
-    font-size: 30px;
-    margin-top: 20px;
+    overflow-y: hidden; // Fixes bug where scrolling appears on smaller screen sizes.
 }
 
 .sign-in {
@@ -39,6 +29,7 @@ $base-color: #FFB7B2;
     margin-top: 30px;
 }
 
+// Animations for the buttons on the page.
 .white {
     color: $base-color;
     background-color: white;
@@ -84,11 +75,11 @@ $base-color: #FFB7B2;
 }
 
 .bottom-text {
-    position: absolute;
+    position: absolute; // Top is programatically passed in from JS.
     font-weight: 700;
     font-size: 24px;
     width: 150px;
-    left: calc(50vw - 75px);
+    left: calc(50vw - 75px); // Centers on the page.
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -109,7 +100,7 @@ $base-color: #FFB7B2;
     flex-direction: column;
     position: absolute;
     overflow: auto;
-    overflow-x: hidden;
+    overflow-x: hidden; // Fixes bug on mobile that allows for horizontal scrolling.
     top: 0;
     left: 0;
     width: 100%;
@@ -162,84 +153,20 @@ $base-color: #FFB7B2;
         margin: 20px;
     }
     img {
-        object-fit: contain !important;
+        object-fit: contain !important; // Ensures images aren't cropped, overrides default Gatsby style.
     }
 }
 
-.sign-up-form-business {
+.business-sign-up {
     width: 35vw;
-    border: 3px solid $base-color;
-    border-radius: 10px;
-    margin: 0px auto;
     margin-top: 150px;
     padding: 20px 50px;
-    display: flex;
     min-height: 65vh;
-    flex-direction: column;
-
-    form {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-    }
-    .title {
-        font-size: 36px;
-        font-weight: 700;
-    }
-    .subtitle {
-        font-size: 28px;
-        font-weight: 300;
-        color: #6D7278;
-        margin-top: 10px;
-        margin-bottom: 40px;
-    }
-    input {
-        margin-bottom: 15px;
-        padding: 10px 20px;
-        color: #6D7278;
-        font-weight: 300;
-        font-size: 20px;
-        width: 100%;
-        border-radius: 10px;
-        border: 1px solid rgba(109, 114, 120, 0.4);
-        font-family: 'Helvetica Neue', sans-serif;
-    }
-    input::placeholder {
-        color: #6D7278;
-    }
-    input:focus::placeholder {
-        color: transparent;
-    }
-    .submit {
-        background-color: $base-color;
-        color: white;
-        font-weight: 700;
-        font-size: 30px;
-        cursor: pointer;
-        min-width: 100%;
-        min-height: 55px;
-        border-radius: 15px;
-        border: 0;
-    }
-    .submit:disabled {
-        opacity: 0.7;
-    }
-    .react-ripples {
-        width: 100%;
-    }
-    .submitted {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: rgba(0,0,0,0.8);
-    }
-    .submitted-text {
-        text-align: center;
-    }
 }
 
+// Eliminates snap scroll and changes all flexboxes to columns. 
+// Changes font sizes and margins to reliably fit on smaller devices.
+// Uses the !important flag to reliably override SASS selector specificity.
 @media screen and (max-width: 960px) {
     .business-container {
         min-height: 100% !important;
@@ -270,16 +197,13 @@ $base-color: #FFB7B2;
     .bottom-text {
         display: none !important;
     }
-    .sign-up-form-business {
-        width: 80vw !important;
-        margin-bottom: 50px !important;
-    }
     .sign-in-main {
         margin-top: 30px !important;
         margin-bottom: 30px !important;
     }
 }
 
+// Slight font and width modifications for smaller browser windows.
 @media (max-height: 900px), (max-width: 1200px) {
     .intro-page {
         .title-text {
@@ -295,14 +219,10 @@ $base-color: #FFB7B2;
             margin: 0px !important;
         }
     }
-    .title, .subtitle {
-        font-size: 24px !important;
-    }
-    .sign-up-form-business {
-        width: 80vw !important;
-    }
 }
 
+// Intended to cover all mobile devices.
+// Eliminates sign up button in header, further shrinks font sizes and adapts margins. 
 @media screen and (max-width: 768px) {
     .title, .subtitle {
         font-size: 24px !important;
@@ -324,14 +244,6 @@ $base-color: #FFB7B2;
     }
     .sign-in.business-button {
         display: none !important;
-    }
-    .sign-up-form-business {
-        margin-top: 75px !important;
-        margin-bottom: 40px !important;
-
-        .submit {
-            font-size: 18px !important;
-        }
     }
 }
 

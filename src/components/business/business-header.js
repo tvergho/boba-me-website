@@ -4,15 +4,12 @@ import { BusinessLogo, ForMerchantsText } from './business-assets';
 import businessStyles from '../../styles/business.module.scss';
 
 const BusinessHeader = ({
-  scrollPosition, windowHeight, scroll, refs,
+  scrollPosition, scroll, refs,
 }) => {
   let styleClass = '';
   let primaryColor = '';
-  if (refs[0].current) {
-    console.log(refs[0].current.offsetTop, refs[1].current.offsetTop, refs[2].current.offsetTop);
-  }
 
-  if (refs[0].current && scrollPosition >= refs[1].current.offsetTop && scrollPosition < refs[2].current.offsetTop) {
+  if (refs && refs[0].current && scrollPosition >= refs[1].current.offsetTop && scrollPosition < refs[2].current.offsetTop) {
     styleClass = businessStyles.pink;
     primaryColor = 'white';
   } else {
@@ -28,7 +25,7 @@ const BusinessHeader = ({
           <ForMerchantsText style={{ marginLeft: '20px', marginRight: '10px' }} color={primaryColor} />
         </div>
 
-        <button type="button" className={`${businessStyles.signIn} ${businessStyles.businessButton} ${styleClass}`} onClick={scroll}>Sign up</button>
+        {scroll && <button type="button" className={`${businessStyles.signIn} ${businessStyles.businessButton} ${styleClass}`} onClick={scroll}>Sign up</button>}
       </div>
     </Sticky>
   );
