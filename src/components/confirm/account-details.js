@@ -34,7 +34,7 @@ const validateInput = (email, password, confirmPassword, setError) => {
   return isError;
 };
 
-const AccountDetails = ({ auth, increment }) => {
+const AccountDetails = ({ increment }) => {
   const [addBusiness, { error: isAddingError, data }] = useMutation(ADD_BUSINESS);
 
   const [email, setEmail] = useState('');
@@ -86,14 +86,14 @@ const AccountDetails = ({ auth, increment }) => {
     if (!validateInput(email, password, confirmPassword, setError) && typeof window !== 'undefined') {
       setLoading(true);
       try {
-        const credential = firebase.auth.EmailAuthProvider.credentialWithLink(email, window.location.href);
+        const credential = firebase.auth().EmailAuthProvider.credentialWithLink(email, window.location.href);
 
-        auth.createUserWithEmailAndPassword(email, password)
+        firebase.auth().createUserWithEmailAndPassword(email, password)
           .then((user) => {
-            auth.currentUser.reauthenticateWithCredential(credential)
+            firebase.auth().currentUser.reauthenticateWithCredential(credential)
               .then(() => {
                 const business = {
-                  businessId: auth.currentUser.uid,
+                  businessId: firebase.auth().currentUser.uid,
                   email,
                 };
                 console.log(business);

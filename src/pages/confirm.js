@@ -8,8 +8,6 @@ import confirmStyles from '../styles/confirm.module.scss';
 import { AccountDetails, BusinessDetails, Completed } from '../components/confirm';
 import SEO from '../components/seo';
 
-const auth = firebase.auth();
-
 class ConfirmSignUp extends Component {
   constructor(props) {
     super(props);
@@ -36,8 +34,8 @@ class ConfirmSignUp extends Component {
         <BusinessHeader />
         <div className={confirmStyles.background}>
           <div className={confirmStyles.pageHeader}>{typeof window !== 'undefined' && window.innerHeight < 600 ? 'Confirm Account' : 'Confirm Your Business Account'}</div>
-          {this.state.step === 0 && <AccountDetails auth={auth} increment={this.increment} />}
-          {this.state.step === 1 && <BusinessDetails auth={auth} increment={this.increment} />}
+          {this.state.step === 0 && <AccountDetails increment={this.increment} />}
+          {this.state.step === 1 && <BusinessDetails increment={this.increment} />}
           {this.state.step >= 2 && <Completed />}
         </div>
       </>

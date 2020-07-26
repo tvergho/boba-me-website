@@ -5,6 +5,7 @@
 import React, { useState, useEffect } from 'react';
 import Geocode from 'react-geocode';
 import { gql, useMutation } from '@apollo/client';
+import firebase from 'gatsby-plugin-firebase';
 import FormBox from './form-box';
 import confirmStyles from '../../styles/confirm.module.scss';
 import LeftCol from './left-col';
@@ -33,7 +34,7 @@ mutation update ($business: UpdateBusinessInput!) {
 
 Geocode.setApiKey('AIzaSyDgbpn2Mnmxm_YmEnuuQKOJT5zMcD6XW90');
 
-const BusinessDetails = ({ auth, increment }) => {
+const BusinessDetails = ({ increment }) => {
   const [pushBusiness, { loading: isUpdatingBusiness, error: isUpdatingError, data }] = useMutation(UPDATE_BUSINESS);
 
   const [loading, setLoading] = useState(true);
@@ -101,7 +102,7 @@ const BusinessDetails = ({ auth, increment }) => {
     try {
       if (!isUploading) {
         const business = {
-          businessId: auth.currentUser.uid,
+          businessId: firebase.auth().currentUser.uid,
           city,
           name,
           phone_number: phone,
