@@ -1,13 +1,12 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import * as firebase from 'firebase/app';
+import firebase from 'gatsby-plugin-firebase';
 import { navigate } from 'gatsby';
 import { BusinessHeader } from '../components/business';
 import confirmStyles from '../styles/confirm.module.scss';
 import { AccountDetails, BusinessDetails, Completed } from '../components/confirm';
 import SEO from '../components/seo';
-import 'firebase/auth';
 
 const auth = firebase.auth();
 

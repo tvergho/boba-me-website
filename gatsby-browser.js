@@ -4,14 +4,9 @@ import React from 'react';
 import {
   ApolloClient, InMemoryCache, ApolloProvider, createHttpLink,
 } from '@apollo/client';
-import * as firebase from 'firebase/app';
 import { setContext } from '@apollo/client/link/context';
-import firebaseConfig from './firebase-config';
+import firebase from 'gatsby-plugin-firebase';
 import 'firebase/auth';
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {

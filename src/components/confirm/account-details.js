@@ -1,11 +1,9 @@
 /* eslint-disable no-useless-escape */
 import React, { useState, useEffect } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import * as firebase from 'firebase/app';
+import firebase from 'gatsby-plugin-firebase';
+import ReactPasswordStrength from 'react-password-strength';
 import FormBox from './form-box';
-import 'firebase/auth';
-
-const ReactPasswordStrength = typeof window !== 'undefined' ? require('react-password-strength') : null;
 
 const ADD_BUSINESS = gql`
 mutation create ($business: CreateBusinessInput!) {
@@ -46,7 +44,7 @@ const AccountDetails = ({ auth, increment }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const enabled = email.trim().length > 0 && password.trim().length > 0 && confirmPassword.trim().length > 0 && isValidPassword;
+  const enabled = email.trim().length > 0 && password.trim().length > 8 && confirmPassword.trim().length > 0 && isValidPassword;
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('emailForConfirm');
