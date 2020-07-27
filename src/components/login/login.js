@@ -6,12 +6,14 @@ import loginStyles from '../../styles/login.module.scss';
 import LoginForm from './login-form';
 import validateEmail from '../../utils/validateEmail';
 import useAuth from '../../utils/useAuth';
+import ForgotPassword from './forgot-password';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [display, setDisplay] = useState('login');
 
   const { auth } = useAuth();
 
@@ -80,11 +82,20 @@ const Login = () => {
     }
   };
 
+  const goToForgot = () => {
+    setDisplay('forgot');
+  };
+
+  const goToLogin = () => {
+    setDisplay('login');
+  };
+
   return (
     <>
       <BusinessHeader pink backgroundClass={loginStyles.background} />
       <div className={`full-background ${loginStyles.background}`}>
-        <LoginForm onChange={handleChange} error={error} loading={loading} submit={submit} />
+        {display === 'login' && <LoginForm onChange={handleChange} error={error} loading={loading} submit={submit} forgot={goToForgot} />}
+        {display === 'forgot' && <ForgotPassword login={goToLogin} />}
       </div>
     </>
   );

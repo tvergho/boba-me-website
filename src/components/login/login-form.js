@@ -1,27 +1,12 @@
 import React from 'react';
-import Lottie from 'react-lottie';
 import loginStyles from '../../styles/login.module.scss';
-import * as animationData from './preloader.json';
-
-const defaultOptions = {
-  loop: true,
-  autoplay: true,
-  animationData: animationData.default,
-  rendererSettings: {
-    preserveAspectRatio: 'xMidYMid slice',
-  },
-};
+import LoginFormBox from './login-form-box';
 
 const LoginForm = ({
-  onChange, error, loading, submit,
+  onChange, error, loading, submit, forgot,
 }) => {
   return (
-    <div className={loginStyles.loginForm}>
-      <div style={{ marginBottom: '20px' }}>
-        <div className={loginStyles.title}>Business Login</div>
-        <div className={loginStyles.error}>{error}</div>
-      </div>
-
+    <LoginFormBox loading={loading} title="Business Login" error={error}>
       <div style={{ marginBottom: '10vh' }}>
         <input placeholder="Email" onChange={(e) => { onChange(e.target.value, 'email'); }} />
         <input placeholder="Password" type="password" onChange={(e) => { onChange(e.target.value, 'password'); }} />
@@ -29,19 +14,9 @@ const LoginForm = ({
 
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <button type="button" className="submit" onClick={submit}>Sign in</button>
-        <button type="button" className={`button-text ${loginStyles.forgot}`}>Forgot your password?</button>
+        <button type="button" className={`button-text ${loginStyles.forgot}`} onClick={forgot}>Forgot your password?</button>
       </div>
-
-      {loading && (
-        <div className="backdrop">
-          <Lottie options={defaultOptions}
-            height="40vh"
-            width="30vw"
-            style={{ marginTop: '5vh' }}
-          />
-        </div>
-      )}
-    </div>
+    </LoginFormBox>
   );
 };
 
