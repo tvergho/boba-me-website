@@ -164,6 +164,21 @@ input:focus::placeholder {
     justify-content: center;
 }
 
+.default-button {
+    background-color: $base-color;
+    color: white;
+    font-weight: 700;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px 30px;
+    border-radius: 15px;
+    border: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .sign-up-form {
     border: 3px solid $base-color;
     border-radius: 10px;
@@ -187,9 +202,6 @@ input:focus::placeholder {
         color: #6D7278;
         margin-top: 10px;
         margin-bottom: 40px;
-    }
-    .submit:disabled {
-        opacity: 0.7;
     }
     .react-ripples {
         width: 100%;
@@ -260,6 +272,12 @@ input:focus::placeholder {
 #react-select-2-input {
     margin-bottom: 0;
     padding: 10px;
+}
+
+.state-selector {
+    * {
+        overflow: visible;
+    }
 }
 
 /**

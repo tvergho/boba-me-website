@@ -7,6 +7,8 @@ import LoginForm from './login-form';
 import validateEmail from '../../utils/validateEmail';
 import useAuth from '../../utils/useAuth';
 import ForgotPassword from './forgot-password';
+import SEO from '../seo';
+import LoginFormBox from './login-form-box';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -14,6 +16,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [display, setDisplay] = useState('login');
+  const [pageLoaded, setPageLoaded] = useState(false);
 
   const { auth } = useAuth();
 
@@ -58,6 +61,9 @@ const Login = () => {
     case 'auth/wrong-password':
       setError('Email or password is incorrect.');
       break;
+    case 'auth/too-many-requests':
+      setError('Too many login attempts. Try again later.');
+      break;
     default:
       setError('There was an error logging in. Please try again.');
       break;
@@ -68,7 +74,6 @@ const Login = () => {
     if (!validateInput()) {
       setLoading(true);
 
-      console.log(email, password);
       auth.signInWithEmailAndPassword(email, password)
         .then(() => {
           navigate('/dashboard');
@@ -83,19 +88,28 @@ const Login = () => {
   };
 
   const goToForgot = () => {
+    setPageLoaded(true);
     setDisplay('forgot');
   };
 
   const goToLogin = () => {
+    setPageLoaded(true);
     setDisplay('login');
   };
 
   return (
     <>
+      <SEO title="Login" />
       <BusinessHeader pink backgroundClass={loginStyles.background} />
       <div className={`full-background ${loginStyles.background}`}>
-        {display === 'login' && <LoginForm onChange={handleChange} error={error} loading={loading} submit={submit} forgot={goToForgot} />}
-        {display === 'forgot' && <ForgotPassword login={goToLogin} />}
+
+        <LoginFormBox title={display === 'login' ? 'Business Login' : 'Forgot Password'} error={error} loading={loading}>
+          <div>
+            <LoginForm onChange={handleChange} submit={submit} forgot={goToForgot} disappear={display !== 'login'} pageLoaded={pageLoaded} />
+            <ForgotPassword login={goToLogin} disappear={display !== 'forgot'} setError={setError} />
+          </div>
+        </LoginFormBox>
+
       </div>
     </>
   );

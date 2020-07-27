@@ -44,5 +44,14 @@
             "jsx": true,
             "sourceType": "module"
         }
-    }
+    },
+    "settings": {
+        "import/resolver": {
+          "alias": [
+            ["@components", "./src/components"],
+            ["@utils", "./src/utils"],
+            ["@styles", "./src/styles"]
+          ]
+        }
+      }
 }

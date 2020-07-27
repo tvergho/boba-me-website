@@ -1,16 +1,6 @@
 import React from 'react';
-import Lottie from 'react-lottie';
 import loginStyles from '../../styles/login.module.scss';
-import * as animationData from './preloader.json';
-
-const defaultOptions = {
-  loop: true,
-  autoplay: true,
-  animationData: animationData.default,
-  rendererSettings: {
-    preserveAspectRatio: 'xMidYMid slice',
-  },
-};
+import Loading from '../lottie/loading';
 
 const LoginFormBox = ({
   loading, children, title, error,
@@ -26,11 +16,7 @@ const LoginFormBox = ({
 
       {loading && (
         <div className="backdrop">
-          <Lottie options={defaultOptions}
-            height="40vh"
-            width="30vw"
-            style={{ marginTop: '5vh' }}
-          />
+          <Loading style={{ marginTop: '5vh' }} />
         </div>
       )}
     </div>

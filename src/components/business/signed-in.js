@@ -7,6 +7,7 @@ import businessStyles from '../../styles/business.module.scss';
 const GET_BUSINESS_NAME = gql`
 query getBusiness ($businessId: ID!) {
   getBusiness(input: $businessId) {
+    businessId
     name
   }
 }

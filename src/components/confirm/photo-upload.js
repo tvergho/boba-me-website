@@ -9,7 +9,7 @@ import axios from 'axios';
 const API_URL = 'https://api.bobame.app';
 
 const PhotoUpload = ({
-  setError, setIsUploading, filenames, setFilenames,
+  setError, setIsUploading, filenames, setFilenames, text, style,
 }) => {
   const {
     getRootProps, getInputProps, open, acceptedFiles,
@@ -115,9 +115,9 @@ const PhotoUpload = ({
   }
 
   return (
-    <div {...getRootProps({ className: 'dropzone' })}>
+    <div {...getRootProps({ className: 'dropzone', style })}>
       <input {...getInputProps()} />
-      <p>Drag your business <span style={{ fontWeight: 500 }}>photos</span> here.</p>
+      {text || <p>Drag your business <span style={{ fontWeight: 500 }}>photos</span> here.</p>}
       <button type="button" onClick={open}>
         Click to Upload
       </button>

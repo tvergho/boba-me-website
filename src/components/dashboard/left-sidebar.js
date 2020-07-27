@@ -24,7 +24,6 @@ const LeftSidebar = ({
       </div>
 
       {items.map((item) => {
-        console.log(item, active);
         return (
           <SidebarItem title={item} key={item} active={item === active} onClick={(title) => { setActive(title); }} />
         );

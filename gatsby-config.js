@@ -50,6 +50,17 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-alias-imports',
+      options: {
+        alias: {
+          '@components': 'src/components',
+          '@styles': 'src/styles',
+          '@utils': 'src/utils',
+        },
+        extensions: ['js'],
+      },
+    },
     'gatsby-plugin-sass',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
