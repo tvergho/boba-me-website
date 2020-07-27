@@ -1,5 +1,6 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
+import { navigate } from 'gatsby';
 import useAuth from '../../utils/useAuth';
 import businessStyles from '../../styles/business.module.scss';
 
@@ -11,7 +12,9 @@ query getBusiness ($businessId: ID!) {
 }
 `;
 
-const SignedIn = ({ user, styleClass }) => {
+const SignedIn = ({
+  user, styleClass, nameClass, buttonClass,
+}) => {
   if (!user) return <div className="signed-in-header" />;
 
   const { data } = useQuery(GET_BUSINESS_NAME, { variables: { businessId: user.uid } });
@@ -19,8 +22,10 @@ const SignedIn = ({ user, styleClass }) => {
 
   return (
     <div className="signed-in-header">
-      <div className="name">{data?.getBusiness !== null && data?.getBusiness !== undefined && data?.getBusiness?.name ? `Welcome, ${data?.getBusiness?.name}` : ''}</div>
-      <button type="button" className={`${businessStyles.signIn} ${businessStyles.businessButton} ${styleClass}`} onClick={signOut}>Sign out</button>
+      <button type="button" className="button-text" onClick={() => { navigate('/dashboard'); }}>
+        <div className={`name ${nameClass}`}>{data?.getBusiness !== null && data?.getBusiness !== undefined && data?.getBusiness?.name ? `Welcome, ${data?.getBusiness?.name}` : ''}</div>
+      </button>
+      <button type="button" className={`${businessStyles.signIn} ${styleClass} ${buttonClass}`} onClick={signOut}>Sign out</button>
     </div>
   );
 };

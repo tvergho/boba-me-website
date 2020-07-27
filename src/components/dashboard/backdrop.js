@@ -4,7 +4,7 @@ import Loader from 'react-loader-spinner';
 const Backdrop = () => {
   return (
     <div className="backdrop">
-      <Loader type="Oval" color="rgba(0,0,0,0.7)" height={150} />
+      <Loader type="Oval" color="#FFB7B2" height={150} />
     </div>
   );
 };

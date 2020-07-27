@@ -39,7 +39,7 @@ const BusinessHeader = ({
         </div>
 
         {scroll && !user && !hide && <button type="button" className={`${businessStyles.signIn} ${businessStyles.businessButton} ${styleClass}`} onClick={scroll}>Sign up</button>}
-        {user && !hide && <SignedIn user={user} styleClass={styleClass} />}
+        {user && !hide && <SignedIn user={user} styleClass={styleClass} buttonClass={businessStyles.businessButton} />}
         {!scroll && !user && !hide && <SignedOut styleClass={styleClass} />}
       </div>
     </Sticky>

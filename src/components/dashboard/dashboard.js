@@ -32,7 +32,7 @@ const Dashboard = () => {
 
   return (
     <PageTransition transitionTime={700}>
-      <DashboardHeader />
+      <DashboardHeader items={SIDEBAR_ITEMS} setActive={setActive} />
       <LeftSidebar active={active} setActive={setActive} items={SIDEBAR_ITEMS} data={data?.getBusiness} />
 
       {(!user || !data) && <Backdrop />}
