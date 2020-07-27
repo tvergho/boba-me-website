@@ -26,7 +26,8 @@ const useAuth = () => {
   const signOut = (navigatePath) => {
     if (auth) {
       auth.signOut();
-      navigate(navigatePath || '/business');
+      const path = !navigatePath || navigatePath?.length > 0 ? navigatePath : '/dashboard/login';
+      navigate(path);
     }
   };
 

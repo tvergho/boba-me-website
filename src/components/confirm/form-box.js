@@ -25,7 +25,7 @@ const FormBox = ({
       </button>
 
       {fullLoading && (
-        <div className={confirmStyles.backdrop}>
+        <div className="backdrop">
           <Loader type="Oval" color="rgba(0,0,0,0.7)" height={80} />
         </div>
       )}

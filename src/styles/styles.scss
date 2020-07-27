@@ -1,25 +1,11 @@
 $base-color: #FFB7B2;
 
+// Basic config. 
 * {
     box-sizing: border-box; 
     font-family: 'Helvetica Neue', sans-serif;
     max-width: 100%;
     overflow-x: hidden;
-}
-
-.submitted-text {
-    font-size: 30px;
-    margin-top: 20px;
-}
-
-.full-background {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: calc(100vh - 90px);
-    position: relative;
 }
 
 html, body {
@@ -33,11 +19,6 @@ body {
 
 input:focus, button:focus {
     outline: 0;
-}
-
-#react-select-2-input {
-    margin-bottom: 0;
-    padding: 10px;
 }
 
 button {
@@ -55,58 +36,6 @@ button:active {
 button:disabled {
     opacity: 0.5;
     cursor: default !important;
-}
-
-.signed-in-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-
-    .name {
-        font-size: 20px;
-        margin-right: 10px;
-    }
-    button {
-        font-size: 20px;
-    }
-}
-
-.container {
-    display: flex;
-    flex-direction: row;
-}
-.container-half {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 50%;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-.container-tri {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 33%;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    margin-top: 120px;
-}
-.react-ripples {
-    margin-top: 30px;
-    border-radius: 15px;
-    width: 100%;
-}
-.cup {
-    height: 700px;
-    width: 560px;
-    padding-top: 50px;
-    margin-left: 50px;
-}
-
-.rotate-out-2-cw {
-	animation: rotate-out-2-cw 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s both;
 }
 
 input {
@@ -129,6 +58,95 @@ input:focus::placeholder {
     color: transparent;
 }
 
+// Universal styles shared across multiple pages. 
+.submitted-text {
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+.full-background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: calc(100vh - 90px);
+    position: relative;
+}
+
+.backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-text {
+    background: none;
+    color: $base-color;
+    font-size: 16px;
+    border: 0;
+}
+.button-text:hover {
+    cursor: pointer;
+}
+
+.signed-in-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+
+    .name {
+        font-size: 20px;
+        margin-right: 10px;
+    }
+    button {
+        font-size: 20px;
+    }
+}
+
+.cup {
+    height: 700px;
+    width: 560px;
+    padding-top: 50px;
+    margin-left: 50px;
+}
+
+// Container styles. 
+.container {
+    display: flex;
+    flex-direction: row;
+}
+.container-half {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 50%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.container-tri {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 33%;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    margin-top: 120px;
+}
+
+.rotate-out-2-cw {
+	animation: rotate-out-2-cw 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s both;
+}
+
+// Shared sign up form.
 .submit {
     background-color: $base-color;
     color: white;
@@ -136,7 +154,7 @@ input:focus::placeholder {
     font-size: 30px;
     cursor: pointer;
     min-width: 100%;
-    height: 55px;
+    padding: 10px 0px;
     border-radius: 15px;
     border: 0;
     display: flex;
@@ -185,8 +203,21 @@ input:focus::placeholder {
     .submitted-text {
         text-align: center;
     }
+
+    .ReactPasswordStrength-input {
+        margin-bottom: 15px;
+        padding: 10px 20px;
+        color: #6D7278;
+        font-weight: 300;
+        font-size: 20px;
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid rgba(109, 114, 120, 0.4);
+        font-family: 'Helvetica Neue', sans-serif;
+    }
 }
 
+// Plugins. 
 .ReactPasswordStrength-strength-desc {
     width: auto;
 }
@@ -201,7 +232,6 @@ input:focus::placeholder {
     justify-content: flex-start;
     align-items: flex-start;
     text-align: left !important;
-
 
     ul {
         padding-inline-start: 20px !important;
@@ -218,6 +248,17 @@ input:focus::placeholder {
         align-self: start;
         margin-top: 0px !important;
     }
+}
+
+.react-ripples {
+    margin-top: 30px;
+    border-radius: 15px;
+    width: 100%;
+}
+
+#react-select-2-input {
+    margin-bottom: 0;
+    padding: 10px;
 }
 
 /**
@@ -294,16 +335,15 @@ input:focus::placeholder {
         margin-bottom: 30px !important;
         height: 400px !important;
     }
+    input {
+        font-size: 14px !important;
+    }
+    .submit {
+        font-size: 18px !important;
+    }
     .sign-up-form {
         margin-top: 75px !important;
         margin-bottom: 40px !important;
-
-        .submit {
-            font-size: 18px !important;
-        }
-        input {
-            font-size: 14px !important;
-        }
     }
     .dropzone {
         font-size: 14px !important;

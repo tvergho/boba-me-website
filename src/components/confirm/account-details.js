@@ -5,6 +5,7 @@ import { gql, useMutation } from '@apollo/client';
 import ReactPasswordStrength from 'react-password-strength';
 import FormBox from './form-box';
 import useAuth from '../../utils/useAuth';
+import validateEmail from '../../utils/validateEmail';
 
 const ADD_BUSINESS = gql`
 mutation create ($business: CreateBusinessInput!) {
@@ -14,11 +15,6 @@ mutation create ($business: CreateBusinessInput!) {
     }
   }
 `;
-
-function validateEmail(email) {
-  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
-}
 
 const validateInput = (email, password, confirmPassword, setError) => {
   let isError = false;
@@ -48,7 +44,7 @@ const AccountDetails = ({ increment }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const enabled = email.trim().length > 0 && password.trim().length > 8 && confirmPassword.trim().length > 0 && isValidPassword;
+  const enabled = email.trim().length > 0 && password.trim().length >= 8 && confirmPassword.trim().length > 0 && isValidPassword;
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('emailForConfirm');
@@ -90,20 +86,14 @@ const AccountDetails = ({ increment }) => {
     if (!validateInput(email, password, confirmPassword, setError) && typeof window !== 'undefined' && auth) {
       setLoading(true);
       try {
-        const credential = firebase.auth.EmailAuthProvider.credentialWithLink(email, window.location.href);
-
         auth.createUserWithEmailAndPassword(email, password)
           .then(() => {
-            auth.currentUser.reauthenticateWithCredential(credential)
-              .then(() => {
-                const business = {
-                  businessId: auth.currentUser.uid,
-                  email,
-                };
-                console.log(business);
+            const business = {
+              businessId: auth.currentUser.uid,
+              email,
+            };
 
-                addBusiness({ variables: { business } });
-              });
+            addBusiness({ variables: { business } });
           })
           .catch((firebaseError) => {
             handleFirebaseError(firebaseError);

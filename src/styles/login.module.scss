@@ -1,7 +1,8 @@
 $base-color: #FFB7B2;
 
 .background {
-    background-color: $base-color;
+    background: rgb(250,198,195);
+    background: linear-gradient(90deg, rgba(250,198,195,1) 0%, rgba(255,183,178,1) 50%, rgba(250,198,195,1) 100%);
 }
 
 .login-form {
@@ -12,11 +13,32 @@ $base-color: #FFB7B2;
     width: 45vw;
     background-color: white;
     padding: 20px 50px;
-    min-height: 50vh;
+    min-height: 40vh;
+    justify-content: space-between;
+    position: relative;
 
     .title {
         text-align: center;
         font-size: 36px;
         font-weight: 700;
+    }
+
+    .error {
+        color: red;
+        min-height: 20px;
+        margin-top: 5px;
+    }
+
+    .forgot {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 24px !important;
+    }
+    .forgot {
+        font-size: 12px !important;
     }
 }

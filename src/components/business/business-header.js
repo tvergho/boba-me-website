@@ -15,12 +15,14 @@ query getBusiness ($businessId: ID!) {
 `;
 
 const SignedIn = ({ user, styleClass }) => {
+  console.log(user);
   const { data } = useQuery(GET_BUSINESS_NAME, { variables: { businessId: user.uid } });
   const { signOut } = useAuth();
+  console.log(data);
 
   return (
     <div className="signed-in-header">
-      <div className="name">{data !== undefined ? `Welcome, ${data?.getBusiness?.name}` : ''}</div>
+      <div className="name">{data?.getBusiness !== null && data?.getBusiness !== undefined && data?.getBusiness?.name ? `Welcome, ${data?.getBusiness?.name}` : ''}</div>
       <button type="button" className={`${businessStyles.signIn} ${businessStyles.businessButton} ${styleClass}`} onClick={signOut}>Sign out</button>
     </div>
   );
@@ -35,7 +37,7 @@ const SignedOut = ({ styleClass }) => {
 };
 
 const BusinessHeader = ({
-  scrollPosition, scroll, refs, pink,
+  scrollPosition, scroll, refs, pink, backgroundClass, hide,
 }) => {
   const { user } = useAuth();
 
@@ -52,15 +54,15 @@ const BusinessHeader = ({
 
   return (
     <Sticky innerZ={99}>
-      <div className={`${businessStyles.businessHeader} ${styleClass}`}>
+      <div className={`${businessStyles.businessHeader} ${styleClass} ${backgroundClass}`}>
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
           <BusinessLogo width="60px" height="60px" color={primaryColor} />
           <ForMerchantsText style={{ marginLeft: '20px', marginRight: '10px' }} color={primaryColor} />
         </div>
 
-        {scroll && !user && <button type="button" className={`${businessStyles.signIn} ${businessStyles.businessButton} ${styleClass}`} onClick={scroll}>Sign up</button>}
-        {user && <SignedIn user={user} styleClass={styleClass} />}
-        {!scroll && !user && <SignedOut styleClass={styleClass} />}
+        {scroll && !user && !hide && <button type="button" className={`${businessStyles.signIn} ${businessStyles.businessButton} ${styleClass}`} onClick={scroll}>Sign up</button>}
+        {user && !hide && <SignedIn user={user} styleClass={styleClass} />}
+        {!scroll && !user && !hide && <SignedOut styleClass={styleClass} />}
       </div>
     </Sticky>
   );
