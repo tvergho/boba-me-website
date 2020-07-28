@@ -14,6 +14,7 @@ import RightCol from './right-col';
 import SaveButton from '../save-button';
 import PasswordModal from './password-modal';
 
+// Query useed for updating the cache.
 const GET_BUSINESS = gql`
 query getBusiness ($businessId: ID!) {
   getBusiness(input: $businessId) {
@@ -34,6 +35,7 @@ query getBusiness ($businessId: ID!) {
 const ProfileScreen = ({
   data, save, isSaving, saveError, setSaving,
 }) => {
+  // Input state.
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -45,6 +47,7 @@ const ProfileScreen = ({
   const [photos, setPhotos] = useState([]);
   const [newPassword, setNewPassword] = useState('');
 
+  // Modal and photo upload state.
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState('');
   const [filenames, setFilenames] = useState([]);
@@ -57,6 +60,7 @@ const ProfileScreen = ({
   const enabled = name?.length > 0 && validateEmail(email) && phone?.length > 0 && website?.length > 0 && address?.length > 0
   && city?.length > 0 && zip?.length > 0 && (newPassword?.length === 0 || newPassword?.length >= 8);
 
+  // Update inputs with the data once loaded.
   useEffect(() => {
     setName(data?.name);
     setEmail(data?.email);
@@ -69,6 +73,7 @@ const ProfileScreen = ({
     setPhotos(data?.photos || []);
   }, [data]);
 
+  // Save the newly uploaded files to the GraphQL database.
   useEffect(() => {
     if (!isUploading && user) {
       const business = {
