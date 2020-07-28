@@ -19,7 +19,7 @@ const RightCol = ({
       <ProfileInput title="State" state id="state" onChange={onChange} value={state} />
       <ProfileInput title="Zip" id="zip" onChange={onChange} value={zip} />
 
-      <div style={{ marginTop: '20px' }}>
+      <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column' }}>
         <h4>Photos</h4>
         <Gallery
           images={photos.map((photo) => {
