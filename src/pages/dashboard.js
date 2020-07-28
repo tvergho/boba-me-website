@@ -11,7 +11,7 @@ const DashboardPage = () => {
   return (
     <Router basepath="/dashboard">
       <PrivateRoute path="/" component={Dashboard} user={user} />
-      <Login path="/login/" />
+      <Login path="/login" />
     </Router>
   );
 };
