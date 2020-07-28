@@ -5,11 +5,12 @@
 import React, { useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
+import Loader from 'react-loader-spinner';
 
 const API_URL = 'https://api.bobame.app';
 
 const PhotoUpload = ({
-  setError, setIsUploading, filenames, setFilenames, text, style,
+  setError, setIsUploading, filenames, setFilenames, text, style, isUploading,
 }) => {
   const {
     getRootProps, getInputProps, open, acceptedFiles,
@@ -21,6 +22,7 @@ const PhotoUpload = ({
 
   // Automatically start uploading once files are added.
   useEffect(() => {
+    console.log(acceptedFiles);
     if (acceptedFiles.length > 0) {
       setFilenames([]);
       upload();
@@ -29,7 +31,7 @@ const PhotoUpload = ({
 
   // Mark an upload as complete.
   useEffect(() => {
-    if (filenames.length === acceptedFiles.length && !filenames.includes(undefined) && !filenames.includes(null)) {
+    if (filenames.length === acceptedFiles.length && filenames.length > 0 && !filenames.includes(undefined) && !filenames.includes(null)) {
       setIsUploading(false);
     }
   }, [filenames, acceptedFiles]);
@@ -118,9 +120,13 @@ const PhotoUpload = ({
     <div {...getRootProps({ className: 'dropzone', style })}>
       <input {...getInputProps()} />
       {text || <p>Drag your business <span style={{ fontWeight: 500 }}>photos</span> here.</p>}
-      <button type="button" onClick={open}>
-        Click to Upload
-      </button>
+
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <button type="button" onClick={open} disabled={isUploading}>
+          Click to Upload
+        </button>
+        <Loader type="Oval" color="#FFB7B2" height={35} style={isUploading ? {} : { display: 'none' }} />
+      </div>
 
       <ul>
         {acceptedFiles.map((file) => {

@@ -4,7 +4,9 @@ import dashboardStyles from '@styles/dashboard.module.scss';
 import useWindowSize from '@utils/useWindowSize';
 import Loading from '../lottie/loading';
 
-const SaveButton = ({ save, isSaving, error }) => {
+const SaveButton = ({
+  save, isSaving, error, enabled,
+}) => {
   const { width } = useWindowSize();
   return (
     <div className={dashboardStyles.save}>
@@ -19,7 +21,7 @@ const SaveButton = ({ save, isSaving, error }) => {
       <PinkButton
         style={width <= 960 ? { fontSize: '18px', marginLeft: '15px' } : { fontSize: '24px', marginLeft: '15px' }}
         onClick={save}
-        disabled={isSaving}
+        disabled={isSaving || !enabled}
       >Save
       </PinkButton>
     </div>

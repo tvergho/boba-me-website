@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PageTransition from 'gatsby-plugin-page-transitions';
-import { gql, useQuery, useMutation } from '@apollo/client';
+import {
+  gql, useQuery, useMutation,
+} from '@apollo/client';
 import DashboardHeader from './dashboard-header';
 import LeftSidebar from './left-sidebar';
 import useAuth from '../../utils/useAuth';
@@ -46,25 +48,40 @@ mutation update ($business: UpdateBusinessInput!) {
 
 const Dashboard = () => {
   const [active, setActive] = useState('Profile');
+  const [saving, setSaving] = useState(false);
   const { user } = useAuth();
 
   const { data } = useQuery(GET_BUSINESS, { variables: { businessId: user?.uid }, skip: !user });
   const [updateBusiness, { loading: isUpdatingBusiness, error: isUpdatingError }] = useMutation(UPDATE_BUSINESS);
 
-  const save = (business) => {
-    console.log(business);
-    updateBusiness({ variables: { business } });
+  const save = (business, optimisticResponse) => {
+    if (!optimisticResponse) {
+      updateBusiness({ variables: { business } });
+    } else {
+      updateBusiness({ variables: { business }, optimisticResponse });
+    }
   };
 
   return (
     <PageTransition transitionTime={700}>
       <SEO title="Dashboard" />
-      <DashboardHeader items={SIDEBAR_ITEMS} setActive={setActive} />
-      <LeftSidebar active={active} setActive={setActive} items={SIDEBAR_ITEMS} data={data?.getBusiness} />
 
-      {active === 'Profile' && <ProfileScreen data={data?.getBusiness} save={save} isSaving={isUpdatingBusiness} saveError={isUpdatingError} />}
+      <div>
+        <DashboardHeader items={SIDEBAR_ITEMS} setActive={setActive} />
+        <LeftSidebar active={active} setActive={setActive} items={SIDEBAR_ITEMS} data={data?.getBusiness} />
 
-      {(!user || !data) && <Backdrop />}
+        {active === 'Profile' && (
+          <ProfileScreen
+            data={data?.getBusiness}
+            save={save}
+            isSaving={isUpdatingBusiness || saving}
+            setSaving={setSaving}
+            saveError={isUpdatingError}
+          />
+        )}
+
+        {(!user || !data) && <Backdrop />}
+      </div>
     </PageTransition>
   );
 };

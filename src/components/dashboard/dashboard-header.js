@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAlignJustify, faTimes } from '@fortawesome/free-solid-svg-icons';
-import dashboardStyles from '../../styles/dashboard.module.scss';
+import dashboardStyles from '@styles/dashboard.module.scss';
+import useAuth from '@utils/useAuth';
+import useWindowSize from '@utils/useWindowSize';
 import SignedIn from '../business/signed-in';
-import useAuth from '../../utils/useAuth';
-import useWindowSize from '../../utils/useWindowSize';
 import SidebarItem from './sidebar-item';
 
 const MOBILE_WIDTH = 960;
@@ -29,7 +29,11 @@ const MobileBackdrop = ({
   open, close, items, onClick, delayedOpen, signOut,
 }) => {
   return (
-    <div className={open ? `${dashboardStyles.mobileBackdrop} fade-in` : `${dashboardStyles.mobileBackdrop} fade-out`} style={!delayedOpen ? { display: 'none' } : {}}>
+    <div
+      className={open ? `${dashboardStyles.mobileBackdrop} fade-in` : `${dashboardStyles.mobileBackdrop} fade-out`}
+      style={!delayedOpen ? { display: 'none' } : {}}
+      onScroll={(e) => { e.preventDefault(); }}
+    >
       <CloseButton close={close} />
 
       <div style={{ minHeight: '60px', width: '100%' }} />
@@ -55,8 +59,14 @@ const DashboardHeader = ({ items, setActive }) => {
     else setDelayedOpen(open);
   }, [open]);
 
-  const openBackdrop = () => setOpen(true);
-  const close = () => setOpen(false);
+  const openBackdrop = () => {
+    setOpen(true);
+    document.querySelector('html').style.overflow = 'hidden';
+  };
+  const close = () => {
+    setOpen(false);
+    document.querySelector('html').style.overflow = '';
+  };
 
   const onClick = (item) => {
     close();
