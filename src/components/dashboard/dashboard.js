@@ -3,6 +3,7 @@ import PageTransition from 'gatsby-plugin-page-transitions';
 import {
   gql, useQuery, useMutation,
 } from '@apollo/client';
+import dashboardStyles from '@styles/dashboard.module.scss';
 import DashboardHeader from './dashboard-header';
 import LeftSidebar from './left-sidebar';
 import useAuth from '../../utils/useAuth';
@@ -66,7 +67,7 @@ const Dashboard = () => {
     <PageTransition transitionTime={700}>
       <SEO title="Dashboard" />
 
-      <div>
+      <div className={dashboardStyles.dashboardContainer}>
         <DashboardHeader items={SIDEBAR_ITEMS} setActive={setActive} />
         <LeftSidebar active={active} setActive={setActive} items={SIDEBAR_ITEMS} data={data?.getBusiness} />
 

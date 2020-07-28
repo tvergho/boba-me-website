@@ -237,10 +237,9 @@ input:focus::placeholder {
 
 .lightbox-button {
     margin-right: 10px;
-    margin-bottom: 10px;
     background-color: $base-color;
     color: white;
-    padding: 10px 20px;
+    padding: 0px 20px;
     border-radius: 10px;
     cursor: pointer;
     display: flex;

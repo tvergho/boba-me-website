@@ -20,8 +20,14 @@ $base-color: #FFB7B2;
     }
 }
 
+.dashboard-container {
+    * {
+        overflow: hidden;
+    }
+}
+
 h2, h4 {
-    overflow-x: visible;
+    overflow: visible !important;
 }
 
 .left-sidebar {
@@ -199,15 +205,17 @@ h4 {
 
         .col {
             flex: 1 0 auto;
-            overflow-y: visible;
             height: auto !important;
             margin-bottom: -40px !important;
         }
     }
     h2 {
-        font-size: 36px;
+        font-size: 28px;
     }
     .col-header {
         justify-content: space-between !important;
+    }
+    .desc {
+        font-size: 14px !important;
     }
 }

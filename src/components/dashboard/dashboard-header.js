@@ -43,7 +43,13 @@ const MobileBackdrop = ({
         );
       })}
 
-      <SidebarItem title="Sign out" key="logout" onClick={() => { signOut(); }} />
+      <SidebarItem title="Sign out"
+        key="logout"
+        onClick={() => {
+          document.querySelector('html').style.overflow = '';
+          signOut();
+        }}
+      />
     </div>
   );
 };
