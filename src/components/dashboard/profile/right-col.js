@@ -30,23 +30,25 @@ const RightCol = ({
           })}
           currentImageWillChange={(index) => { setCurrent(index); }}
           customControls={[
-            <button
-              className="lightbox-button"
-              type="button"
-              onClick={() => {
-                setDefaultImage(current);
-              }}
-            >Set as Default
-            </button>,
-            <button
-              className="lightbox-button"
-              type="button"
-              onClick={() => {
-                deleteImage(current);
-                setCurrent((cur) => cur - 1);
-              }}
-            >Delete
-            </button>,
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <button
+                className="lightbox-button"
+                type="button"
+                onClick={() => {
+                  setDefaultImage(current);
+                }}
+              >Set as Default
+              </button>
+              <button
+                className="lightbox-button"
+                type="button"
+                onClick={() => {
+                  deleteImage(current);
+                  setCurrent((cur) => cur - 1);
+                }}
+              >Delete
+              </button>
+            </div>,
           ]}
         />
         <PhotoUpload
