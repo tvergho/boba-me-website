@@ -16,6 +16,7 @@ $base-color: #FFB7B2;
     min-height: 40vh;
     justify-content: space-between;
     position: relative;
+    overflow-x: hidden;
 
     .title {
         text-align: center;
