@@ -57,9 +57,12 @@ const BusinessDetails = ({ increment }) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window?.location?.search);
-      setName(urlParams.get('businessName'));
-      setPhone(urlParams.get('phone').replace(' ', '+'));
-      geocodeAddress(urlParams.get('address'));
+
+      if (urlParams.get('phone')) {
+        setName(urlParams.get('businessName'));
+        setPhone(urlParams.get('phone').replace(' ', '+'));
+        geocodeAddress(urlParams.get('address'));
+      }
     }
   }, []);
 
