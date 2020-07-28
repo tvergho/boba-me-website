@@ -14,6 +14,16 @@ const SignedOut = ({ styleClass }) => {
   );
 };
 
+const UseSticky = ({ use, children }) => {
+  if (!use) return children;
+
+  return (
+    <Sticky innerZ={99}>
+      {children}
+    </Sticky>
+  );
+};
+
 const BusinessHeader = ({
   scrollPosition, scroll, refs, pink, backgroundClass, hide,
 }) => {
@@ -31,7 +41,7 @@ const BusinessHeader = ({
   }
 
   return (
-    <Sticky innerZ={99}>
+    <UseSticky use={scroll}>
       <div className={`${businessStyles.businessHeader} ${styleClass} ${backgroundClass}`}>
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
           <BusinessLogo width="60px" height="60px" color={primaryColor} />
@@ -42,7 +52,7 @@ const BusinessHeader = ({
         {user && !hide && <SignedIn user={user} styleClass={styleClass} buttonClass={businessStyles.businessButton} />}
         {!scroll && !user && !hide && <SignedOut styleClass={styleClass} />}
       </div>
-    </Sticky>
+    </UseSticky>
   );
 };
 
