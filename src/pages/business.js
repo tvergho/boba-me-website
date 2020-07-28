@@ -44,7 +44,7 @@ class Business extends Component {
     this.snapElement = new ScrollSnap(element, {
       snapDestinationY: '100%',
       duration: 300,
-      timeout: 0,
+      timeout: 150,
     });
     this.snapElement.bind(this.onSnap);
   }

@@ -10,6 +10,11 @@ const PrivateRoute = ({
     navigate('/dashboard/login');
     return null;
   }
+
+  if (typeof window === 'undefined') { // SSR
+    return null;
+  }
+
   return user
     ? <Component {...rest} />
     : (
