@@ -8,7 +8,8 @@ const useDelay = (origProp, delay) => {
   const delayToUse = delay || 500;
 
   useEffect(() => {
-    setTimeout(() => { setDelayedProp(prop); }, delayToUse);
+    if (!prop) setTimeout(() => { setDelayedProp(prop); }, delayToUse);
+    else setDelayedProp(prop);
   }, [prop]);
 
   return [prop, setProp, delayedProp, setDelayedProp];

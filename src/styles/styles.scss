@@ -87,6 +87,40 @@ input:focus::placeholder {
     z-index: 150;
 }
 
+.modal {
+    position: absolute;
+    width: 30vw;
+    left: 35vw;
+    top: 30%;
+    z-index: 500;
+    transition: opacity 0.3s;
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid rgba(0,0,0,0.6);
+    padding: 30px;
+
+    .title {
+        font-weight: 500;
+        font-size: 22px;
+        margin-right: 30px;
+    }
+    .error {
+        font-size: 14px;
+        min-height: 20px;
+        color: red;
+    }
+    .modal-close {
+        position: absolute;
+        top: 35px;
+        right: 15px;
+        color: rgba(0,0,0,0.7);
+        transition: color 0.3s;
+    }
+    .modal-close:hover {
+        color: $base-color;
+    }
+}
+
 .button-text {
     background: none;
     color: $base-color;
@@ -288,7 +322,7 @@ input:focus::placeholder {
 }
 
 /**
- * Keyframes
+ * Keyframes and animations
  */
 
 @keyframes rotate-out-2-cw {
@@ -314,13 +348,33 @@ input:focus::placeholder {
     animation-fill-mode: forwards;
 }
 
+.fade-in-partial {
+    animation: fade-in-partial 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.fade-out-partial {
+    animation: fade-out-partial 0.5s;
+    animation-fill-mode: forwards;
+}
+
 @keyframes fade-in {
     0% {opacity: 0;}
     100% {opacity: 1;}
 }
 
+@keyframes fade-in-partial {
+    0% {opacity: 0;}
+    100% {opacity: 0.7;}
+}
+
 @keyframes fade-out {
     0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+@keyframes fade-out-partial {
+    0% {opacity: 0.7;}
     100% {opacity: 0;}
 }
 
@@ -370,6 +424,10 @@ input:focus::placeholder {
     }
     .name {
         display: none !important;
+    }
+    .modal {
+        width: 60vw;
+        left: 20vw;
     }
 }
 

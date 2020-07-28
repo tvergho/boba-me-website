@@ -20,7 +20,7 @@ const SaveButton = ({
       {error && error.length > 0 && <div style={{ color: 'red' }}>{error}</div>}
       <PinkButton
         style={width <= 960 ? { fontSize: '18px', marginLeft: '15px' } : { fontSize: '24px', marginLeft: '15px' }}
-        onClick={save}
+        onClick={() => { save(); }}
         disabled={isSaving || !enabled}
       >Save
       </PinkButton>
