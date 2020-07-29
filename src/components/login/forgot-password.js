@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import loginStyles from '@styles/login.module.scss';
 import validateEmail from '@utils/validateEmail';
 import useAuth from '@utils/useAuth';
-import { Slide } from 'react-awesome-reveal';
+import { Fade } from 'react-awesome-reveal';
 import useDelay from '@utils/useDelay';
 import Confirm from '../lottie/confirm';
 
@@ -11,11 +11,11 @@ const ForgotForm = ({
   submitted, email, setEmail, disappear,
 }) => {
   return (
-    <Slide reverse={disappear}>
+    <Fade reverse={disappear} duration={1500}>
       <div style={{ marginBottom: '10vh' }} className={submitted ? 'fade-out' : ''}>
         <input placeholder="Enter your email..." value={email} onChange={(e) => { setEmail(e.target.value); }} />
       </div>
-    </Slide>
+    </Fade>
   );
 };
 
@@ -28,7 +28,9 @@ const ForgotCompleted = ({ email }) => {
   );
 };
 
-const ForgotPassword = ({ login, disappear, setError }) => {
+const ForgotPassword = ({
+  login, disappear, setError,
+}) => {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted, delayedSubmit, setDelayedSubmit] = useDelay(false);
 
@@ -61,8 +63,9 @@ const ForgotPassword = ({ login, disappear, setError }) => {
   };
 
   return (
-    <div className="test" style={disappear ? { visibility: 'hidden', display: 'none' } : {}}>
-      <Slide reverse={disappear} direction="left">
+    <div style={disappear ? { visibility: 'hidden', height: 0 } : {}}>
+
+      <Fade reverse={disappear} duration={2000}>
 
         {delayedSubmit
           ? <ForgotCompleted email={email} />
@@ -78,9 +81,8 @@ const ForgotPassword = ({ login, disappear, setError }) => {
           </button>
           <button type="button" className={`button-text ${loginStyles.forgot}`} onClick={backToLogin}>Back to Login</button>
         </div>
-      </Slide>
+      </Fade>
     </div>
-
   );
 };
 

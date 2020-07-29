@@ -15,7 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [display, setDisplay] = useState('login');
+  const [forgot, setForgot] = useState(false);
   const [pageLoaded, setPageLoaded] = useState(false);
 
   const { auth } = useAuth();
@@ -89,12 +89,12 @@ const Login = () => {
 
   const goToForgot = () => {
     setPageLoaded(true);
-    setDisplay('forgot');
+    setForgot(true);
   };
 
   const goToLogin = () => {
     setPageLoaded(true);
-    setDisplay('login');
+    setForgot(false);
   };
 
   return (
@@ -103,10 +103,10 @@ const Login = () => {
       <BusinessHeader pink backgroundClass={loginStyles.background} />
       <div className={`full-background ${loginStyles.background}`}>
 
-        <LoginFormBox title={display === 'login' ? 'Business Login' : 'Forgot Password'} error={error} loading={loading}>
+        <LoginFormBox title={!forgot ? 'Business Login' : 'Forgot Password'} error={error} loading={loading}>
           <div>
-            <LoginForm onChange={handleChange} submit={submit} forgot={goToForgot} disappear={display !== 'login'} pageLoaded={pageLoaded} />
-            <ForgotPassword login={goToLogin} disappear={display !== 'forgot'} setError={setError} />
+            <LoginForm onChange={handleChange} submit={submit} forgot={goToForgot} disappear={forgot} pageLoaded={pageLoaded} />
+            <ForgotPassword login={goToLogin} disappear={!forgot} setError={setError} />
           </div>
         </LoginFormBox>
 

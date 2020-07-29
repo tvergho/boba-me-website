@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Slide } from 'react-awesome-reveal';
+import { Fade } from 'react-awesome-reveal';
 import loginStyles from '@styles/login.module.scss';
 
-const WithSlide = ({ children, pageLoaded, disappear }) => {
+const WithFade = ({ children, pageLoaded, disappear }) => {
   if (!pageLoaded) return children;
   return (
-    <Slide reverse={disappear} direction="right">
+    <Fade reverse={disappear} duration={1500}>
       {children}
-    </Slide>
+    </Fade>
   );
 };
 
@@ -16,8 +16,8 @@ const LoginForm = ({
   onChange, submit, forgot, disappear, pageLoaded,
 }) => {
   return (
-    <div className="test" style={disappear ? { visibility: 'hidden', display: 'none' } : {}}>
-      <WithSlide pageLoaded={pageLoaded} disappear={disappear}>
+    <div style={disappear ? { visibility: 'hidden', height: 0 } : {}}>
+      <WithFade pageLoaded={pageLoaded} disappear={disappear}>
 
         <div style={{ marginBottom: '10vh' }}>
           <input placeholder="Email" onChange={(e) => { onChange(e.target.value, 'email'); }} />
@@ -29,7 +29,7 @@ const LoginForm = ({
           <button type="button" className={`button-text ${loginStyles.forgot}`} onClick={forgot}>Forgot your password?</button>
         </div>
 
-      </WithSlide>
+      </WithFade>
     </div>
   );
 };
