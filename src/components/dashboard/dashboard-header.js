@@ -10,8 +10,12 @@ import SidebarItem from './sidebar-item';
 const MOBILE_WIDTH = 960;
 
 const MobileButton = ({ open }) => {
+  const openAndScroll = () => {
+    window.scrollTo(0, 0);
+    open();
+  };
   return (
-    <div className={dashboardStyles.mobileButton} onClick={open} role="button" tabIndex={0}>
+    <div className={dashboardStyles.mobileButton} onClick={openAndScroll} role="button" tabIndex={0}>
       <FontAwesomeIcon icon={faAlignJustify} size="2x" />
     </div>
   );
