@@ -10,12 +10,8 @@ import SidebarItem from './sidebar-item';
 const MOBILE_WIDTH = 960;
 
 const MobileButton = ({ open }) => {
-  const openAndScroll = () => {
-    window.scrollTo(0, 0);
-    open();
-  };
   return (
-    <div className={dashboardStyles.mobileButton} onClick={openAndScroll} role="button" tabIndex={0}>
+    <div className={dashboardStyles.mobileButton} onClick={open} role="button" tabIndex={0}>
       <FontAwesomeIcon icon={faAlignJustify} size="2x" />
     </div>
   );
@@ -72,10 +68,15 @@ const DashboardHeader = ({ items, setActive }) => {
   const openBackdrop = () => {
     setOpen(true);
     document.querySelector('html').style.overflow = 'hidden';
+    document.querySelector('.dashboard-screen').style.overflow = 'hidden';
+    document.querySelector('.dashboard-screen').style.maxHeight = '0vh';
+    window.scrollTo(0, 0);
   };
   const close = () => {
     setOpen(false);
     document.querySelector('html').style.overflow = '';
+    document.querySelector('.dashboard-screen').style.overflow = '';
+    document.querySelector('.dashboard-screen').style.maxHeight = '';
   };
 
   const onClick = (item) => {

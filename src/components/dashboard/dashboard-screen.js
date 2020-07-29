@@ -15,7 +15,7 @@ const DashboardScreen = ({
   }
 
   return (
-    <div className={dashboardStyles.screen}>
+    <div className={`${dashboardStyles.screen} dashboard-screen`}>
       <div className={dashboardStyles.col} style={{ width: width1 }}>
         <div className={dashboardStyles.colHeader}>
 

@@ -102,6 +102,7 @@ h2, h4 {
     background-color: white;
     z-index: 150;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .sidebar-item:hover, .mobile-button:hover {
