@@ -63,6 +63,26 @@ input:focus::placeholder {
     margin-top: 20px;
 }
 
+.default-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    padding: 15px 30px;
+}
+
+.default-header.white {
+    color: $base-color;
+    background-color: white;
+    border-bottom: 1px solid $base-color;
+}
+
+.default-header-text {
+    margin-left: 15px;
+}
+
 .full-background {
     display: flex;
     flex-direction: column;
@@ -455,6 +475,12 @@ input:focus::placeholder {
     }
     .full-background {
         min-height: calc(100vh - 60px) !important;
+    }
+    .default-header {
+        justify-content: center !important;
+    }
+    .default-header-text {
+        margin-left: 10px !important;
     }
 }
 

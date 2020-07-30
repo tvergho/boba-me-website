@@ -42,7 +42,7 @@ const BusinessHeader = ({
 
   return (
     <UseSticky use={scroll}>
-      <div className={`${businessStyles.businessHeader} ${styleClass} ${backgroundClass}`}>
+      <div className={`default-header ${styleClass} ${backgroundClass}`}>
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
           <BusinessLogo width="60px" height="60px" color={primaryColor} />
           <ForMerchantsText style={{ marginLeft: '20px', marginRight: '10px' }} color={primaryColor} />

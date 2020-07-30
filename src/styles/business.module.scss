@@ -85,16 +85,6 @@ $base-color: #FFB7B2;
     align-items: center;
 }
 
-.business-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 100%;
-    padding: 15px 30px;
-}
-
 .business-container {
     display: flex;
     flex-direction: column;
@@ -231,15 +221,10 @@ $base-color: #FFB7B2;
         font-size: 26px !important;
         max-width: 80% !important;
     }
-    .business-header {
-        padding: 10px !important;
-        justify-content: center !important;
-    }
     .business-logo {
         height: 40px !important;
     }
     .business-logo-text {
-        width: 250px !important;
         margin-left: 10px !important;
     }
     .sign-in.business-button {
