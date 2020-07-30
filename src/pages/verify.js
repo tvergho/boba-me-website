@@ -19,7 +19,7 @@ const VerifyPage = () => {
       <SEO title="Verify Your Account" />
       <DefaultHeader />
       <div className="full-background">
-        <div className={`sign-up-form ${confirmStyles.signUp}`}>
+        <div className={`sign-up-form ${confirmStyles.signUp}`} style={{ marginTop: '0px' }}>
           {mode === 'verifyEmail' && <VerifyEmail actionCode={actionCode} />}
           {mode === 'resetPassword' && <PasswordReset actionCode={actionCode} />}
         </div>
