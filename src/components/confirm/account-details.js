@@ -8,7 +8,7 @@ import useAuth from '../../utils/useAuth';
 import validateEmail from '../../utils/validateEmail';
 
 const ADD_BUSINESS = gql`
-mutation create ($business: CreateBusinessInput!) {
+mutation create ($business: BusinessInput!) {
     createBusiness(input: $business) {
       businessId
       email

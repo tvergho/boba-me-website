@@ -12,7 +12,7 @@ import RightCol from './right-col';
 import useAuth from '../../utils/useAuth';
 
 const UPDATE_BUSINESS = gql`
-mutation update ($business: UpdateBusinessInput!) {
+mutation update ($business: BusinessInput!) {
     updateBusiness(input: $business) {
       businessId
       category
