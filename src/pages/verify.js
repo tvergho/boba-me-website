@@ -12,6 +12,14 @@ const VerifyPage = () => {
     const urlParams = new URLSearchParams(window.location.search);
     setMode(urlParams.get('mode'));
     setActionCode(urlParams.get('oobCode'));
+
+    if (urlParams.get('mode') === 'signIn') {
+      let url = urlParams.get('continueUrl');
+      const oobCode = urlParams.get('oobCode');
+      const apiKey = urlParams.get('apiKey');
+      url = `${decodeURI(url)}&oobCode=${oobCode}&apiKey=${apiKey}`;
+      window.location.replace(url);
+    }
   }, []);
 
   return (
