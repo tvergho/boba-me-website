@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DefaultHeader from '@components/header';
 import confirmStyles from '@styles/confirm.module.scss';
 import { VerifyEmail, PasswordReset } from '@components/verify/';
+import ConfirmSignUp from '@components/confirm/confirm';
 import SEO from '../components/seo';
 
 const VerifyPage = () => {
@@ -12,15 +13,11 @@ const VerifyPage = () => {
     const urlParams = new URLSearchParams(window.location.search);
     setMode(urlParams.get('mode'));
     setActionCode(urlParams.get('oobCode'));
-
-    if (urlParams.get('mode') === 'signIn') {
-      let url = urlParams.get('continueUrl');
-      const oobCode = urlParams.get('oobCode');
-      const apiKey = urlParams.get('apiKey');
-      url = `${decodeURI(url)}&oobCode=${oobCode}&apiKey=${apiKey}&mode=signIn`;
-      window.location.replace(url);
-    }
   }, []);
+
+  if (mode === 'signIn') {
+    return <ConfirmSignUp />;
+  }
 
   return (
     <>

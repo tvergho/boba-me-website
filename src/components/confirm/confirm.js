@@ -1,14 +1,11 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable react/prefer-stateless-function */
 import React, { useState, useEffect } from 'react';
 import { navigate } from 'gatsby';
-import { BusinessHeader } from '../components/business';
-import confirmStyles from '../styles/confirm.module.scss';
-import { AccountDetails, BusinessDetails, Completed } from '../components/confirm';
-import SEO from '../components/seo';
-import useWindowSize from '../utils/useWindowSize';
-import useAuth from '../utils/useAuth';
+import { BusinessHeader } from '@components/business';
+import confirmStyles from '@styles/confirm.module.scss';
+import { AccountDetails, BusinessDetails, Completed } from '@components/confirm';
+import SEO from '@components/seo';
+import useWindowSize from '@utils/useWindowSize';
+import useAuth from '@utils/useAuth';
 
 const ConfirmSignUp = () => {
   const { auth } = useAuth();
