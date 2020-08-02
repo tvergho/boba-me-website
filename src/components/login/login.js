@@ -18,7 +18,7 @@ const Login = () => {
   const [forgot, setForgot] = useState(false);
   const [pageLoaded, setPageLoaded] = useState(false);
 
-  const { auth } = useAuth();
+  const { auth, signOut } = useAuth();
 
   const handleChange = (val, id) => {
     switch (id) {
@@ -75,8 +75,13 @@ const Login = () => {
       setLoading(true);
 
       auth.signInWithEmailAndPassword(email, password)
-        .then(() => {
-          navigate('/dashboard');
+        .then(async ({ user }) => {
+          const { claims } = await user.getIdTokenResult();
+          if (claims.business) navigate('/dashboard');
+          else {
+            signOut();
+            setError('Not a business account.');
+          }
         })
         .catch((firebaseError) => {
           handleFirebaseError(firebaseError);
