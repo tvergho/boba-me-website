@@ -17,7 +17,7 @@ const VerifyPage = () => {
       let url = urlParams.get('continueUrl');
       const oobCode = urlParams.get('oobCode');
       const apiKey = urlParams.get('apiKey');
-      url = `${decodeURI(url)}&oobCode=${oobCode}&apiKey=${apiKey}`;
+      url = `${decodeURI(url)}&oobCode=${oobCode}&apiKey=${apiKey}&mode=signIn`;
       window.location.replace(url);
     }
   }, []);
