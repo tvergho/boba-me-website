@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { navigate } from 'gatsby';
 import { BusinessHeader } from '@components/business';
 import confirmStyles from '@styles/confirm.module.scss';
-import { AccountDetails, BusinessDetails, Completed } from '@components/confirm';
+import {
+  AccountDetails, BusinessDetails, PaymentDetails, Completed,
+} from '@components/confirm';
 import SEO from '@components/seo';
 import useWindowSize from '@utils/useWindowSize';
 import useAuth from '@utils/useAuth';
@@ -30,7 +32,8 @@ const ConfirmSignUp = () => {
         <div className={confirmStyles.pageHeader}>{height < 600 ? 'Confirm Account' : 'Confirm Your Business Account'}</div>
         {step === 0 && <AccountDetails increment={increment} />}
         {step === 1 && <BusinessDetails increment={increment} />}
-        {step >= 2 && <Completed />}
+        {step === 2 && <PaymentDetails increment={increment} />}
+        {step >= 3 && <Completed />}
       </div>
     </>
   );

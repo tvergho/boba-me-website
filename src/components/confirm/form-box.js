@@ -1,9 +1,11 @@
 import React from 'react';
+import Loading from '@components/lottie/loading';
 import Loader from 'react-loader-spinner';
-import confirmStyles from '../../styles/confirm.module.scss';
+import confirmStyles from '@styles/confirm.module.scss';
+import PropTypes from 'prop-types';
 
 const FormBox = ({
-  children, title, error, enabled, submit, loading, fullLoading,
+  children, title, error, enabled = false, submit, loading, fullLoading,
 }) => {
   return (
     <div className={`sign-up-form ${confirmStyles.signUp}`}>
@@ -26,11 +28,20 @@ const FormBox = ({
 
       {fullLoading && (
         <div className="backdrop">
-          <Loader type="Oval" color="rgba(0,0,0,0.7)" height={80} />
+          <Loading />
         </div>
       )}
     </div>
   );
+};
+
+FormBox.propTypes = {
+  title: PropTypes.string.isRequired,
+  error: PropTypes.string,
+  enabled: PropTypes.bool,
+  submit: PropTypes.func,
+  loading: PropTypes.bool,
+  fullLoading: PropTypes.bool,
 };
 
 export default FormBox;

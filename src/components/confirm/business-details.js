@@ -62,6 +62,8 @@ const BusinessDetails = ({ increment }) => {
         setName(urlParams.get('businessName'));
         setPhone(urlParams.get('phone').replace(' ', '+'));
         geocodeAddress(urlParams.get('address'));
+      } else {
+        setLoading(false);
       }
     }
   }, []);
@@ -87,7 +89,31 @@ const BusinessDetails = ({ increment }) => {
       if (res.results && res.results.length > 0) {
         if (res.results[0].address_components[0].types[0] === 'premise') res.results[0].address_components.shift();
 
-        const [num, street, cityName, county, state, country, zipcode] = res.results[0].address_components;
+        let num, street, cityName, state, zipcode;
+
+        for (const component of res.results[0].address_components) {
+          switch (component.types[0]) {
+          case 'street_number':
+            num = component;
+            break;
+          case 'route':
+            street = component;
+            break;
+          case 'postal_code':
+            zipcode = component;
+            break;
+          case 'locality':
+            cityName = component;
+            break;
+          case 'administrative_area_level_1':
+            state = component;
+            break;
+          default:
+            break;
+          }
+        }
+
+        console.log(res.results);
         setAddress(`${num.long_name} ${street.long_name}`);
         setCity(cityName.long_name);
         setStateCode({ value: state.short_name, label: state.long_name });

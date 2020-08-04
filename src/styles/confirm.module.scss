@@ -33,6 +33,7 @@
 
     form {
         margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     button {
@@ -47,6 +48,14 @@
 
     input {
         color: rgba(0,0,0,0.9) !important;
+    }
+
+    h6 {
+        font-size: 18px;
+        font-weight: 300;
+        color: #6D7278;
+        margin: 0;
+
     }
 }
 

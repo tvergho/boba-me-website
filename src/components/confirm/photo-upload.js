@@ -1,11 +1,11 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable no-use-before-define */
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 
 const API_URL = 'https://api.bobame.app';
 
@@ -135,6 +135,16 @@ const PhotoUpload = ({
       </ul>
     </div>
   );
+};
+
+PhotoUpload.propTypes = {
+  setError: PropTypes.func.isRequired,
+  setIsUploading: PropTypes.func.isRequired,
+  filenames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setFilenames: PropTypes.func.isRequired,
+  text: PropTypes.string,
+  style: PropTypes.object,
+  isUploading: PropTypes.bool,
 };
 
 export default PhotoUpload;
