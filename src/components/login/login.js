@@ -78,6 +78,7 @@ const Login = () => {
         .then(async ({ user }) => {
           const { claims } = await user.getIdTokenResult();
           if (claims.business) navigate('/dashboard');
+          else if (claims.admin) navigate('/admin');
           else {
             signOut();
             setError('Not a business account.');

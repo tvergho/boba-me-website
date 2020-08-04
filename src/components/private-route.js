@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { navigate } from 'gatsby';
 import Loader from 'react-loader-spinner';
 
@@ -15,11 +15,22 @@ const PrivateRoute = ({
     return null;
   }
 
+  const checkAdmin = async () => {
+    const { claims } = await user.getIdTokenResult();
+    if (claims.admin) navigate('/admin');
+  };
+
+  useEffect(() => {
+    if (user) {
+      checkAdmin();
+    }
+  }, [user]);
+
   return user
     ? <Component {...rest} />
     : (
       <div style={{
-        width: '100%', height: '100vh', display: 'flex', alignItems: 'center', justifyCosntent: 'center',
+        width: '100%', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
       }}
       >
         <Loader type="Oval" color="#FFB7B2" height={150} style={{ margin: 'auto auto' }} />
