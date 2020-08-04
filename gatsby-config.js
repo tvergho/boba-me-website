@@ -12,8 +12,8 @@ module.exports = {
     title: 'BobaMe',
     titleTemplate: '%s · BobaMe',
     description:
-      'Social recommendation app for Boba.',
-    url: 'http://bobame.app', // No trailing slash allowed!
+      'BobaMe allows you to recommend your favorite boba shops to your friends. Stay up to date with the best boba in your area and earn money back for buying boba.',
+    url: 'http://bobame.app',
     image: 'icon.png',
   },
   plugins: [
