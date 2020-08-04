@@ -31,3 +31,9 @@
         font-size: 16px !important;
     }
 }
+
+@media screen and (max-width: 550px) {
+    .admin-container {
+        margin-top: 60px;
+    }
+}
