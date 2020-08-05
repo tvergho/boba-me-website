@@ -39,7 +39,6 @@ const BusinessDetails = ({ increment }) => {
   const { user } = useAuth();
 
   const [loading, setLoading] = useState(true);
-  const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [stateCode, setStateCode] = useState({ value: 'CA', label: 'California' });
@@ -51,7 +50,7 @@ const BusinessDetails = ({ increment }) => {
   const [filenames, setFilenames] = useState([]);
   const [willUpdate, setWillUpdate] = useState(false);
 
-  const enabled = name.trim().length > 0 && address.trim().length > 0 && city.trim().length > 0 && zip.trim().length > 0 && phone.trim().length > 0;
+  const enabled = address.trim().length > 0 && city.trim().length > 0 && zip.trim().length > 0 && phone.trim().length > 0;
 
   // Attempt to retrieve the customer's info from URL params.
   useEffect(() => {
@@ -59,7 +58,6 @@ const BusinessDetails = ({ increment }) => {
       const urlParams = new URLSearchParams(window?.location?.search);
 
       if (urlParams.get('phone')) {
-        setName(urlParams.get('businessName'));
         setPhone(urlParams.get('phone').replace(' ', '+'));
         geocodeAddress(urlParams.get('address'));
       } else {
@@ -134,7 +132,6 @@ const BusinessDetails = ({ increment }) => {
         const business = {
           businessId: user.uid,
           city,
-          name,
           phone_number: phone,
           state: stateCode.value,
           street_address: address,
@@ -154,7 +151,6 @@ const BusinessDetails = ({ increment }) => {
   return (
     <>
       <FormBox title="Business Details" fullLoading={loading} enabled={enabled} error={error} loading={isUpdatingBusiness || (willUpdate && isUploading)} submit={updateBusiness}>
-        <input placeholder="Café Name" name="name" id="name" value={name} onChange={(e) => { setName(e.target.value); }} />
         <div className={confirmStyles.columns}>
           <LeftCol
             address={address}

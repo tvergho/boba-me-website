@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect } from 'react';
 import { navigate } from 'gatsby';
-import Loader from 'react-loader-spinner';
+import PageLoader from '@components/page-loader';
 
 const PrivateRoute = ({
   component: Component, location, user, ...rest
@@ -28,13 +28,6 @@ const PrivateRoute = ({
 
   return user
     ? <Component {...rest} />
-    : (
-      <div style={{
-        width: '100%', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
-      }}
-      >
-        <Loader type="Oval" color="#FFB7B2" height={150} style={{ margin: 'auto auto' }} />
-      </div>
-    );
+    : <PageLoader />;
 };
 export default PrivateRoute;

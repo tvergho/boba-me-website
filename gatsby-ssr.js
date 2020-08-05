@@ -2,4 +2,4 @@
 import 'firebase/auth';
 import 'isomorphic-fetch';
 
-export { wrapRootElement } from './apollo';
+export { wrapRootElement } from './root';

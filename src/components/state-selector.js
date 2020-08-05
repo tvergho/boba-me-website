@@ -2,6 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import states from '@components/states';
 import useWindowSize from '@utils/useWindowSize';
+import PropTypes from 'prop-types';
 
 export function getStateValueFromCode(code) {
   if (code === 'CA') {
@@ -49,6 +50,15 @@ const StateSelector = ({ onChange, value, style }) => {
       />
     </div>
   );
+};
+
+StateSelector.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.shape({
+    label: PropTypes.string,
+    value: PropTypes.string,
+  }).isRequired,
+  style: PropTypes.object,
 };
 
 export default StateSelector;

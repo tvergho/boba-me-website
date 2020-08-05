@@ -16,4 +16,4 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 });
 
-export { wrapRootElement } from './apollo';
+export { wrapRootElement } from './root';

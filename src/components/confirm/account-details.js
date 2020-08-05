@@ -11,6 +11,7 @@ const ADD_BUSINESS = gql`
 mutation create ($business: BusinessInput!) {
     createBusiness(input: $business) {
       businessId
+      name
       email
     }
   }
@@ -37,6 +38,7 @@ const AccountDetails = ({ increment }) => {
   const [addBusiness, { error: isAddingError, data }] = useMutation(ADD_BUSINESS);
   const { auth, firebaseExport: firebase } = useAuth();
 
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -44,11 +46,14 @@ const AccountDetails = ({ increment }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const enabled = email.trim().length > 0 && password.trim().length >= 8 && confirmPassword.trim().length > 0 && isValidPassword;
+  const enabled = name.trim().length > 0 && email.trim().length > 0 && password.trim().length >= 8 && confirmPassword.trim().length > 0 && isValidPassword;
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('emailForConfirm');
     if (storedEmail) setEmail(storedEmail);
+
+    const urlParams = new URLSearchParams(window?.location?.search);
+    if (urlParams.get('businessName')) setName(urlParams.get('businessName'));
   }, []);
 
   useEffect(() => {
@@ -90,6 +95,7 @@ const AccountDetails = ({ increment }) => {
           .then(() => {
             const business = {
               businessId: auth.currentUser.uid,
+              name,
               email,
             };
 
@@ -127,7 +133,8 @@ const AccountDetails = ({ increment }) => {
   };
 
   return (
-    <FormBox title="Account Details" enabled={enabled} error={error} submit={submit} loading={loading}>
+    <FormBox title="Account Details" enabled={enabled} error={error} submit={submit} fullLoading={loading}>
+      <input placeholder="Café Name" name="name" id="name" value={name} onChange={(e) => { setName(e.target.value); }} />
       <input placeholder="Email" name="email" id="email" value={email} onChange={handleChange} />
       {isSSR ? <></> : (
         <ReactPasswordStrength

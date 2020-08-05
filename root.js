@@ -7,6 +7,26 @@ import { setContext } from '@apollo/client/link/context';
 import firebase from 'gatsby-plugin-firebase';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#ffeae4',
+      main: '#ffb7b2',
+      dark: '#ca8783',
+      contrastText: '#fff',
+    },
+  },
+  typography: {
+    fontFamily: [
+      'Helvetica Neue',
+      'Helvetica',
+      'sans-serif',
+    ].join(','),
+  },
+});
 
 const stripePromise = loadStripe('pk_live_51HAPDhLaYzzSqeWdaSFyCtN18guJc1SrtGISGh4OWbUEE8iBJMw9BS4rd2QHrHmJ1TMswNUGH7Z3HxBTKlIcXwC200ABHI5Xsu');
 
@@ -50,7 +70,9 @@ const wrapRootElement = ({ element }) => {
   return (
     <ApolloProvider client={client}>
       <Elements stripe={stripePromise}>
-        {element}
+        <ThemeProvider theme={theme}>
+          {element}
+        </ThemeProvider>
       </Elements>
     </ApolloProvider>
   );
