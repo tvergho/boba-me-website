@@ -12,7 +12,7 @@ module.exports = {
     title: 'BobaMe',
     titleTemplate: '%s · BobaMe',
     description:
-      'BobaMe allows you to recommend your favorite boba shops to your friends. Stay up to date with the best boba in your area and earn money back for buying boba.',
+      'BobaMe allows you to recommend your favorite boba shops to your friends. Stay up to date with the best boba in the Bay Area and earn money back for buying boba.',
     url: 'http://bobame.app',
     image: 'icon.png',
   },
@@ -59,6 +59,14 @@ module.exports = {
           '@utils': 'src/utils',
         },
         extensions: ['js'],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /.svg/,
+        },
       },
     },
     'gatsby-plugin-sass',

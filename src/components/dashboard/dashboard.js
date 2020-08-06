@@ -10,8 +10,9 @@ import useAuth from '../../utils/useAuth';
 import Backdrop from './backdrop';
 import SEO from '../seo';
 import ProfileScreen from './profile';
+import PaymentScreen from './payment';
 
-const SIDEBAR_ITEMS = ['Profile'];
+const SIDEBAR_ITEMS = ['Profile', 'Payment'];
 
 const GET_BUSINESS = gql`
 query getBusiness ($businessId: ID!) {
@@ -26,6 +27,22 @@ query getBusiness ($businessId: ID!) {
     street_address
     website
     zip
+    paymentInfo {
+      stripeId
+      paymentMethodId
+      address {
+        city
+        state
+        line1
+        postal_code
+      }
+      card {
+        brand
+        last4
+        exp_month
+        exp_year
+      }
+    }
   }
 }
 `;
@@ -52,8 +69,10 @@ const Dashboard = () => {
   const [saving, setSaving] = useState(false);
   const { user } = useAuth();
 
-  const { data } = useQuery(GET_BUSINESS, { variables: { businessId: user?.uid }, skip: !user });
+  const { data, error: getError } = useQuery(GET_BUSINESS, { variables: { businessId: user?.uid }, skip: !user });
   const [updateBusiness, { loading: isUpdatingBusiness, error: isUpdatingError }] = useMutation(UPDATE_BUSINESS);
+
+  if (getError) console.log(getError);
 
   const save = (business, optimisticResponse) => {
     if (!optimisticResponse) {
@@ -62,6 +81,12 @@ const Dashboard = () => {
       updateBusiness({ variables: { business }, optimisticResponse });
     }
   };
+
+  const businessAddress = data?.getBusiness ? {
+    address: data.getBusiness.street_address,
+    state: data.getBusiness.state,
+    city: data.getBusiness.city,
+  } : {};
 
   return (
     <PageTransition transitionTime={700}>
@@ -78,7 +103,12 @@ const Dashboard = () => {
             isSaving={isUpdatingBusiness || saving}
             setSaving={setSaving}
             saveError={isUpdatingError}
+            getQuery={GET_BUSINESS}
           />
+        )}
+
+        {active === 'Payment' && (
+          <PaymentScreen paymentInfo={data?.getBusiness?.paymentInfo} businessAddress={businessAddress} />
         )}
 
         {(!user || !data) && <Backdrop />}

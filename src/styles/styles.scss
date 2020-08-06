@@ -295,6 +295,10 @@ input:focus::placeholder {
     width: auto;
 }
 
+.state-selector-alt {
+    padding: 7px !important;
+}
+
 .lightbox-button {
     margin-right: 10px;
     background-color: $base-color;

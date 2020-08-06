@@ -2,7 +2,7 @@ import React from 'react';
 import { FormControlLabel, Checkbox, TextField } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import confirmStyles from '@styles/confirm.module.scss';
-import StateSelector from '@components/state-selector';
+import StateSelectorAlt from '@components/state-selector-alt';
 
 const AddressEntry = ({ values, setters }) => {
   const {
@@ -42,7 +42,7 @@ const AddressEntry = ({ values, setters }) => {
           fullWidth
           margin="normal"
         />
-        <StateSelector
+        <StateSelectorAlt
           onChange={(val) => { setStateCode(val); }}
           value={stateCode}
           style={{ marginTop: '10px' }}
@@ -56,7 +56,7 @@ AddressEntry.propTypes = {
   values: PropTypes.shape({
     address: PropTypes.string,
     city: PropTypes.string,
-    stateCode: PropTypes.string,
+    stateCode: PropTypes.object,
     useBusinessAddress: PropTypes.bool,
   }).isRequired,
   setters: PropTypes.shape({

@@ -57,8 +57,7 @@ StateSelector.propTypes = {
   value: PropTypes.shape({
     label: PropTypes.string,
     value: PropTypes.string,
-  }).isRequired,
-  style: PropTypes.object,
+  }),
 };
 
 export default StateSelector;

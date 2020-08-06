@@ -5,8 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { getStateValueFromCode } from '@components/state-selector';
 import useAuth from '@utils/useAuth';
 import axios from 'axios';
-import { useApolloClient, gql } from '@apollo/client';
-import useDelay from '@utils/useDelay';
+import { useApolloClient } from '@apollo/client';
 import validateEmail from '@utils/validateEmail';
 import DashboardScreen from '../dashboard-screen';
 import LeftCol from './left-col';
@@ -14,26 +13,8 @@ import RightCol from './right-col';
 import SaveButton from '../save-button';
 import PasswordModal from './password-modal';
 
-// Query useed for updating the cache.
-const GET_BUSINESS = gql`
-query getBusiness ($businessId: ID!) {
-  getBusiness(input: $businessId) {
-    businessId
-    city
-    name
-    email
-    phone_number
-    photos
-    state
-    street_address
-    website
-    zip
-  }
-}
-`;
-
 const ProfileScreen = ({
-  data, save, isSaving, saveError, setSaving,
+  data, save, isSaving, saveError, setSaving, getQuery,
 }) => {
   // Input state.
   const [name, setName] = useState('');
@@ -42,7 +23,7 @@ const ProfileScreen = ({
   const [website, setWebsite] = useState('');
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
-  const [stateCode, setStateCode] = useState('');
+  const [stateCode, setStateCode] = useState({ label: 'California', value: 'CA' });
   const [zip, setZip] = useState('');
   const [photos, setPhotos] = useState([]);
   const [newPassword, setNewPassword] = useState('');
@@ -51,7 +32,7 @@ const ProfileScreen = ({
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState('');
   const [filenames, setFilenames] = useState([]);
-  const [modalShown, setModalShown, delayHide] = useDelay(false);
+  const [modalShown, setModalShown] = useState(false);
   const [modalPassword, setModalPassword] = useState('');
   const [modalLoading, setModalLoading] = useState(false);
 
@@ -223,9 +204,14 @@ const ProfileScreen = ({
       const token = await user.getIdToken();
 
       client.writeQuery({
-        query: GET_BUSINESS,
+        query: getQuery,
         data: {
-          getBusiness: { ...data, photos: newPhotos },
+          __typename: 'Query',
+          getBusiness: {
+            __typename: 'Business',
+            businessId: user.uid,
+            photos: newPhotos,
+          },
         },
       });
 
@@ -275,18 +261,15 @@ const ProfileScreen = ({
         topRight={<SaveButton save={saveData} isSaving={isSaving || isUploading} error={saveError || error} enabled={enabled} />}
         mainWidth={50}
       />
-
-      {delayHide && (
-        <PasswordModal
-          error={error}
-          modalShown={modalShown}
-          password={modalPassword}
-          setPassword={setModalPassword}
-          close={() => { setModalShown(false); }}
-          modalLoading={modalLoading}
-          submit={reauth}
-        />
-      )}
+      <PasswordModal
+        error={error}
+        modalShown={modalShown}
+        password={modalPassword}
+        setPassword={setModalPassword}
+        close={() => { setModalShown(false); }}
+        modalLoading={modalLoading}
+        submit={reauth}
+      />
     </>
   );
 };

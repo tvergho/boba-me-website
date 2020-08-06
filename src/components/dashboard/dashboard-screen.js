@@ -1,6 +1,7 @@
 import React from 'react';
 import dashboardStyles from '@styles/dashboard.module.scss';
 import useWindowSize from '@utils/useWindowSize';
+import PropTypes from 'prop-types';
 
 const DashboardScreen = ({
   title, description, mainWidth, leftCol, rightCol, topRight,
@@ -36,6 +37,15 @@ const DashboardScreen = ({
       </div>
     </div>
   );
+};
+
+DashboardScreen.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  mainWidth: PropTypes.number,
+  leftCol: PropTypes.element,
+  rightCol: PropTypes.element,
+  topRight: PropTypes.element,
 };
 
 export default DashboardScreen;

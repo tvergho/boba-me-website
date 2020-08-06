@@ -2,6 +2,7 @@ import React from 'react';
 import dashboardStyles from '@styles/dashboard.module.scss';
 import Input from 'react-phone-number-input/input';
 import StateSelector from '@components/state-selector';
+import PropTypes from 'prop-types';
 
 const ProfileInput = ({
   title, id, phone, onChange, value, state, password,
@@ -14,6 +15,16 @@ const ProfileInput = ({
       {state && <StateSelector onChange={(val) => { onChange(val, id); }} value={value} />}
     </div>
   );
+};
+
+ProfileInput.propTypes = {
+  title: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  phone: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.any,
+  state: PropTypes.bool,
+  password: PropTypes.bool,
 };
 
 export default ProfileInput;

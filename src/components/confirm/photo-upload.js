@@ -142,7 +142,7 @@ PhotoUpload.propTypes = {
   setIsUploading: PropTypes.func.isRequired,
   filenames: PropTypes.arrayOf(PropTypes.string).isRequired,
   setFilenames: PropTypes.func.isRequired,
-  text: PropTypes.string,
+  text: PropTypes.object,
   style: PropTypes.object,
   isUploading: PropTypes.bool,
 };

@@ -1,29 +1,19 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import PinkButton from '@components/pink-button';
 import ProfileInput from './profile-input';
+import Modal from '../modal';
 
 const PasswordModal = ({
   modalShown, password, setPassword, close, error, submit, modalLoading,
 }) => {
   return (
-    <>
-      <div className={`backdrop ${modalShown ? 'fade-in-partial' : 'fade-out-partial'}`} />
-      <div className={`modal ${modalShown ? 'fade-in' : 'fade-out'}`}>
-        <div className="title">Enter your original password again for security.</div>
-        <div className="error">{error}</div>
+    <Modal modalShown={modalShown} close={close} error={error} title="Enter your original password again for security.">
+      <ProfileInput title="Password" id="password" password value={password} onChange={setPassword} />
 
-        <button type="button" className="button-text modal-close" onClick={close}>
-          <FontAwesomeIcon icon={faTimes} />
-        </button>
-        <ProfileInput title="Password" id="password" password value={password} onChange={setPassword} />
-
-        <div style={{ flexDirection: 'row', justifyContent: 'flex-end', display: 'flex' }}>
-          <PinkButton style={{ fontSize: '16px' }} onClick={submit} disabled={modalLoading}>Submit</PinkButton>
-        </div>
+      <div style={{ flexDirection: 'row', justifyContent: 'flex-end', display: 'flex' }}>
+        <PinkButton style={{ fontSize: '16px' }} onClick={submit} disabled={modalLoading}>Submit</PinkButton>
       </div>
-    </>
+    </Modal>
   );
 };
 
