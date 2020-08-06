@@ -10,7 +10,7 @@ const PinkButton = ({
       {children}
       {loading
         && (
-          <div style={{ marginLeft: '15px' }}>
+          <div style={{ marginLeft: '10px' }}>
             <Loader type="ThreeDots" color="white" height={loaderHeight} />
           </div>
         )}

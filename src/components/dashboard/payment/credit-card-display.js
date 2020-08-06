@@ -9,6 +9,9 @@ import JCB from 'payment-icons/min/flat/jcb.svg';
 import Mastercard from 'payment-icons/min/flat/mastercard.svg';
 import UnionPay from 'payment-icons/min/flat/unionpay.svg';
 import Visa from 'payment-icons/min/flat/visa.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import PinkButton from '@components/pink-button';
 
 const CardIcon = ({ brand, width = '80px', height = '50px' }) => {
   const normalizedBrand = brand.trim().toLowerCase();
@@ -32,8 +35,22 @@ const CardIcon = ({ brand, width = '80px', height = '50px' }) => {
   }
 };
 
-const CreditCardDisplay = ({ paymentInfo, openEdit }) => {
-  if (!paymentInfo) return null;
+const AddCard = ({ openAdd }) => {
+  return (
+    <div className={dashboardStyles.addCardPrompt}>
+      <div>Add a credit card to get started with BobaMe.</div>
+      <PinkButton style={{ fontSize: '16px', marginTop: '30px' }} onClick={openAdd}>
+        <FontAwesomeIcon icon={faPlus} color="white" />
+        <div style={{ marginLeft: '5px' }}>Add Card</div>
+      </PinkButton>
+    </div>
+  );
+};
+
+const CreditCardDisplay = ({
+  paymentInfo, openEdit, openDelete, openAdd,
+}) => {
+  if (!paymentInfo) return <AddCard openAdd={openAdd} />;
 
   const { card, address } = paymentInfo;
   const {
@@ -47,7 +64,7 @@ const CreditCardDisplay = ({ paymentInfo, openEdit }) => {
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <button type="button" className="button-text" onClick={openEdit}>Edit</button>
-        <button type="button" className="button-text">Delete</button>
+        <button type="button" className="button-text" onClick={openDelete}>Delete</button>
       </div>
 
       <div className={dashboardStyles.creditCard}>

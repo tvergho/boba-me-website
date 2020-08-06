@@ -107,6 +107,13 @@ input:focus::placeholder {
     z-index: 150;
 }
 
+h6 {
+    font-size: 18px;
+    font-weight: 300;
+    color: #6D7278;
+    margin: 0;
+}
+
 .modal {
     position: absolute;
     width: 30vw;
@@ -138,6 +145,12 @@ input:focus::placeholder {
     }
     .modal-close:hover {
         color: $base-color;
+    }
+    .buttons {
+        display: flex;
+        justify-content: flex-end; 
+        margin-top: 20px;
+        flex-direction: row;
     }
 }
 

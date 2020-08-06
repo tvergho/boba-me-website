@@ -8,10 +8,10 @@ const EditModal = ({
   values, setters, close, modalShown, loading, error, updatePaymentInfo, disabled,
 }) => {
   return (
-    <Modal title="Edit your payment details" modalShown={modalShown} close={close} error={error ? 'There was an error updating your payment info.' : ''}>
+    <Modal title="Edit your payment details" modalShown={modalShown} close={close} error={error}>
       <PaymentEntry values={values} setters={setters} />
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
+      <div className="buttons">
         <PinkButton
           style={{ fontSize: '16px' }}
           loading={loading}
