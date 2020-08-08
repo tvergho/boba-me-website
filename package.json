@@ -72,12 +72,16 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "cypress": "^4.12.1",
+    "cypress-firebase": "^1.4.3",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-cypress": "^2.11.1",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.0",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4",
+    "firebase-admin": "^9.0.0",
     "prettier": "2.0.5"
   },
   "repository": {
