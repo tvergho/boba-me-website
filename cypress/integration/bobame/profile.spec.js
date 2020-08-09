@@ -17,7 +17,7 @@ describe('Profile page', () => {
   const originalPassword = 'Testable11$';
   const changedPassword = '12345678';
 
-  beforeEach(() => {
+  before(() => {
     cy.viewport(1000, 1000);
     cy.wrap(firebase.auth().signInWithEmailAndPassword(testEmail, originalPassword)).then(() => {
       localStorage.setItem('expectSignIn', '1');
