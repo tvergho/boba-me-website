@@ -67,6 +67,7 @@ $base-color: #FFB7B2;
 .landing-container {
     background-color: $base-color;
     padding-bottom: 100px;
+    min-height: calc(100vh - 125px);
 
     .sign-up-form {
         display: flex;
