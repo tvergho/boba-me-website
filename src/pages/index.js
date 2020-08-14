@@ -109,7 +109,7 @@ export const query = graphql`
     }
     apple: file(relativePath: { eq: "coming-soon-apple.png" }) {
       childImageSharp {
-        fixed(width: 280, height: 100) {
+        fixed(width: 288, height: 100) {
           ...GatsbyImageSharpFixed_noBase64
         }
       }
