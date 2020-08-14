@@ -75,7 +75,15 @@ class Home extends Component {
         <LogoHeader logo={data.logo.childImageSharp.fixed} />
 
         <div className={`container ${mainStyles.landingContainer}`}>
-          <SignUpContainer errors={this.state.errors} signUp={this.signUp} input={this.state.input} onChange={this.onChange} submitted={this.state.submitted} />
+          <SignUpContainer
+            errors={this.state.errors}
+            signUp={this.signUp}
+            input={this.state.input}
+            onChange={this.onChange}
+            submitted={this.state.submitted}
+            google={data.google.childImageSharp.fixed}
+            apple={data.apple.childImageSharp.fixed}
+          />
           <BobaContainer />
         </div>
       </div>
@@ -88,6 +96,20 @@ export const query = graphql`
     logo: file(relativePath: { eq: "white-logo.png" }) {
       childImageSharp {
         fixed(width: 75, height: 75) {
+          ...GatsbyImageSharpFixed_noBase64
+        }
+      }
+    }
+    google: file(relativePath: { eq: "coming-soon-google.png" }) {
+      childImageSharp {
+        fixed(width: 288, height: 100) {
+          ...GatsbyImageSharpFixed_noBase64
+        }
+      }
+    }
+    apple: file(relativePath: { eq: "coming-soon-apple.png" }) {
+      childImageSharp {
+        fixed(width: 280, height: 100) {
           ...GatsbyImageSharpFixed_noBase64
         }
       }

@@ -11,9 +11,6 @@ $base-color: #FFB7B2;
 }
 
 .container-half {
-    //animation: fade-in 0.75s ease-in 0.75s;
-    //animation-fill-mode: forwards;
-    //opacity: 0;
     color: white;
 
     .title-text {
@@ -33,16 +30,16 @@ $base-color: #FFB7B2;
     position: absolute;
     right: 50px;
     font-size: 24px;
-
-    //opacity: 0;
-    //animation: fade-in 0.75s ease-in;
-    //animation-fill-mode: forwards;
 }
 
-.cup {
-    //opacity: 0;
-    //animation: fade-in 0.75s ease-in 0.75s;
-    //animation-fill-mode: forwards;
+.coming-soon-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+
+    .coming-soon {
+        margin: 0px 10px;
+    }
 }
 
 .logo-header {
@@ -51,12 +48,6 @@ $base-color: #FFB7B2;
     align-items: center;
     padding-top: 50px;
     background-color: $base-color;
-
-    svg {
-        //opacity: 0;
-        //animation: fade-in 0.75s ease-in;
-        //animation-fill-mode: forwards;
-    }
 
     .logo {
         margin-left: 20px;
@@ -155,6 +146,17 @@ $base-color: #FFB7B2;
     .logo-image {
         width: 70px !important;
         height: 70px !important;
+    }
+    .coming-soon-container {
+        flex-direction: column !important;
+
+        .coming-soon {
+            margin: 10px 0px !important;
+            height: 70px !important;
+        }
+        img {
+            object-fit: contain !important;
+        }
     }
     .title-text {
         font-size: 28px !important;

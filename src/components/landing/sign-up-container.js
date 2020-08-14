@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Ripples from 'react-ripples';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 import mainStyles from '../../styles/index.module.scss';
+import SignUpPromo from './sign-up-promo';
 
 const SignUpContainer = ({
-  signUp, errors, input, onChange, submitted,
+  signUp, errors, input, onChange, submitted, google, apple,
 }) => {
   const { firstName, lastName, email } = input;
 
@@ -19,13 +21,7 @@ const SignUpContainer = ({
 
   return (
     <div className={`container-half ${mainStyles.containerHalf} left`}>
-      <div className={mainStyles.titleText}>
-        <div>Share the <span style={{ fontWeight: 500 }}>best boba </span>
-          with the <span style={{ fontWeight: 500 }}>best people.</span>
-        </div>
-      </div>
-
-      <div className={mainStyles.subtext}>Sign up for updates</div>
+      <SignUpPromo google={google} apple={apple} />
 
       <div className={mainStyles.submitted} style={{ display: delayedSubmit ? 'block' : 'none' }}>
         <FontAwesomeIcon icon={faCheckCircle} size="3x" style={{ marginTop: '30px' }} />
@@ -61,6 +57,24 @@ const SignUpContainer = ({
       </form>
     </div>
   );
+};
+
+SignUpContainer.propTypes = {
+  signUp: PropTypes.func,
+  errors: PropTypes.shape({
+    firstName: PropTypes.bool,
+    lastName: PropTypes.bool,
+    email: PropTypes.bool,
+  }),
+  input: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    email: PropTypes.string,
+  }),
+  onChange: PropTypes.func,
+  submitted: PropTypes.bool,
+  google: PropTypes.object,
+  apple: PropTypes.object,
 };
 
 export default SignUpContainer;
