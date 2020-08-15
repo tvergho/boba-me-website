@@ -103,14 +103,14 @@ export const query = graphql`
     google: file(relativePath: { eq: "coming-soon-google.png" }) {
       childImageSharp {
         fixed(width: 288, height: 100) {
-          ...GatsbyImageSharpFixed_noBase64
+          ...GatsbyImageSharpFixed
         }
       }
     }
     apple: file(relativePath: { eq: "coming-soon-apple.png" }) {
       childImageSharp {
         fixed(width: 288, height: 100) {
-          ...GatsbyImageSharpFixed_noBase64
+          ...GatsbyImageSharpFixed
         }
       }
     }
