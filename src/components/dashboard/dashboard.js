@@ -4,6 +4,8 @@ import {
   gql, useQuery, useMutation,
 } from '@apollo/client';
 import dashboardStyles from '@styles/dashboard.module.scss';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import DashboardHeader from './dashboard-header';
 import LeftSidebar from './left-sidebar';
 import useAuth from '../../utils/useAuth';
@@ -11,6 +13,8 @@ import Backdrop from './backdrop';
 import SEO from '../seo';
 import ProfileScreen from './profile';
 import PaymentScreen from './payment';
+
+const stripePromise = loadStripe('pk_live_51HAPDhLaYzzSqeWdaSFyCtN18guJc1SrtGISGh4OWbUEE8iBJMw9BS4rd2QHrHmJ1TMswNUGH7Z3HxBTKlIcXwC200ABHI5Xsu');
 
 const SIDEBAR_ITEMS = ['Profile', 'Payment'];
 
@@ -89,31 +93,33 @@ const Dashboard = () => {
   } : {};
 
   return (
-    <PageTransition transitionTime={700}>
-      <SEO title="Dashboard" />
+    <Elements stripe={stripePromise}>
+      <PageTransition transitionTime={700}>
+        <SEO title="Dashboard" />
 
-      <div className={dashboardStyles.dashboardContainer}>
-        <DashboardHeader items={SIDEBAR_ITEMS} setActive={setActive} />
-        <LeftSidebar active={active} setActive={setActive} items={SIDEBAR_ITEMS} data={data?.getBusiness} />
+        <div className={dashboardStyles.dashboardContainer}>
+          <DashboardHeader items={SIDEBAR_ITEMS} setActive={setActive} />
+          <LeftSidebar active={active} setActive={setActive} items={SIDEBAR_ITEMS} data={data?.getBusiness} />
 
-        {active === 'Profile' && (
-          <ProfileScreen
-            data={data?.getBusiness}
-            save={save}
-            isSaving={isUpdatingBusiness || saving}
-            setSaving={setSaving}
-            saveError={isUpdatingError}
-            getQuery={GET_BUSINESS}
-          />
-        )}
+          {active === 'Profile' && (
+            <ProfileScreen
+              data={data?.getBusiness}
+              save={save}
+              isSaving={isUpdatingBusiness || saving}
+              setSaving={setSaving}
+              saveError={isUpdatingError}
+              getQuery={GET_BUSINESS}
+            />
+          )}
 
-        {active === 'Payment' && (
-          <PaymentScreen paymentInfo={data?.getBusiness?.paymentInfo} businessAddress={businessAddress} />
-        )}
+          {active === 'Payment' && (
+            <PaymentScreen paymentInfo={data?.getBusiness?.paymentInfo} businessAddress={businessAddress} />
+          )}
 
-        {(!user || !data) && <Backdrop />}
-      </div>
-    </PageTransition>
+          {(!user || !data) && <Backdrop />}
+        </div>
+      </PageTransition>
+    </Elements>
   );
 };
 

@@ -25,10 +25,6 @@ describe('Profile page', () => {
     });
   });
 
-  it('logs in', () => {
-    cy.url().should('equal', 'http://localhost:8000/dashboard/');
-  });
-
   it('sets name', () => {
     cy.contains('Business Name').siblings().clear().type('Tea Society');
     cy.contains('Save').click();

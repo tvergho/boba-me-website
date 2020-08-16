@@ -5,8 +5,6 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import firebase from 'gatsby-plugin-firebase';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
@@ -27,8 +25,6 @@ const theme = createMuiTheme({
     ].join(','),
   },
 });
-
-const stripePromise = loadStripe('pk_live_51HAPDhLaYzzSqeWdaSFyCtN18guJc1SrtGISGh4OWbUEE8iBJMw9BS4rd2QHrHmJ1TMswNUGH7Z3HxBTKlIcXwC200ABHI5Xsu');
 
 const httpLink = createHttpLink({
   uri: 'https://btmf5q4phbd2jb5yzzpif2bzte.appsync-api.us-east-2.amazonaws.com/graphql',
@@ -69,11 +65,9 @@ const client = new ApolloClient({
 const wrapRootElement = ({ element }) => {
   return (
     <ApolloProvider client={client}>
-      <Elements stripe={stripePromise}>
-        <ThemeProvider theme={theme}>
-          {element}
-        </ThemeProvider>
-      </Elements>
+      <ThemeProvider theme={theme}>
+        {element}
+      </ThemeProvider>
     </ApolloProvider>
   );
 };
